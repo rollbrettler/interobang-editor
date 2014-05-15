@@ -1,0 +1,93 @@
+{
+    "rows": [{
+        "id": "",
+        "visible": true,
+        "bg_color": "",
+        "bg_image": "",
+        "fullsize": false,
+        "margin": {
+            "bottom": 0,
+            "top": 0
+        },
+        "padding": {
+            "bottom": 0,
+            "left": 0,
+            "right": 0,
+            "top": 0
+        },
+        "columns": [{
+            "type": {
+                "name": "text",
+                "icon_css": "fa fa-font"
+            },
+            "value": "",
+            "sizeSmall": "4",
+            "sizeMedium": "4",
+            "sizeLarge": "4"
+        }, {
+            "type": {
+                "name": "text",
+                "icon_css": "fa fa-font"
+            },
+            "value": "",
+            "sizeSmall": "4",
+            "sizeMedium": "4",
+            "sizeLarge": "4"
+        }, {
+            "type": {
+                "name": "text",
+                "icon_css": "fa fa-font"
+            },
+            "value": "",
+            "sizeSmall": "4",
+            "sizeMedium": "4",
+            "sizeLarge": "4"
+        }],
+        "ordinal": 0
+    }, {
+        "id": "f5e909c4-53d5-d96e-fc0d-588ca7538423",
+        "visible": true,
+        "bg_color": "",
+        "bg_image": "",
+        "fullsize": false,
+        "margin": {
+            "bottom": 0,
+            "top": 0
+        },
+        "padding": {
+            "bottom": 0,
+            "left": 0,
+            "right": 0,
+            "top": 0
+        },
+        "columns": [{
+            "type": {
+                "name": "empty",
+                "icon_css": "fa fa-square-o"
+            },
+            "value": "",
+            "sizeSmall": "4",
+            "sizeMedium": "4",
+            "sizeLarge": "4"
+        }, {
+            "type": {
+                "name": "text",
+                "icon_css": "fa fa-font"
+            },
+            "value": "",
+            "sizeSmall": "4",
+            "sizeMedium": "4",
+            "sizeLarge": "4"
+        }, {
+            "type": {
+                "name": "text",
+                "icon_css": "fa fa-font"
+            },
+            "value": "",
+            "sizeSmall": "4",
+            "sizeMedium": "4",
+            "sizeLarge": "4"
+        }],
+        "ordinal": 1
+    }]
+}

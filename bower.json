@@ -1,0 +1,23 @@
+{
+  "name": "interobang Wordpress Editor",
+  "version": "0.1.0",
+  "authors": [
+    "Tim Petter <tim@timpetter.de>"
+  ],
+  "description": "Wordpress Editor from Tim Petter",
+  "homepage": "http://timpetter.de/",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "backbone": "*",
+    "jquery-ui": "*",
+    "font-awesome": "*"
+  },
+  "private": true,
+  "license": "private"
+}
