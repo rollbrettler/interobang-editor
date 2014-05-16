@@ -15,20 +15,25 @@ app.EditorView = Backbone.View.extend({
 
         this.editorContent = this.$el.find('.editor-content');
         this.editorSettings = this.$el.find('.editor-settings');
+        
+        this.listenTo(this.collection, "change", this.saveCollection);
 
     },
 
     events: {
-
+        
     },
 
     render: function () {
         
         var that = this;
         
+        this.editorContent.children().remove();
+        
         _.each(this.collection.models, function (row) {
             that.renderRow(row);
         });
+        
     },
 
     renderRow: function (row) {
@@ -44,30 +49,13 @@ app.EditorView = Backbone.View.extend({
         } else {
             this.editorContent.append($row);
         }
+        
+        if(typeof rowView.bind_drag === "function") {
+            rowView.bind_drag();
+        }
     },
-
-    renderColumnSettings: function (event, model) {
-
-        this.editorContent.hide();
-
-        var settingsView = new SettingsView({
-            model: model
-        });
-
-        console.log(this.editorSettings);
-
-        settingsView.renderColumnSettings();
-
-        this.editorSettings.show();
-
-        event.preventDefault();
-    },
-    saveSettings: function (event, model) {
-
-        console.log(this.collection.toJSON());
-        this.collection.remove(model);
-        console.log(this.collection.toJSON());
-        this.showContent();
-
+    
+    saveCollection: function() {
+        console.log("editor: ",this.collection.toJSON());
     }
 });

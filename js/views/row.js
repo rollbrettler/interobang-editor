@@ -12,7 +12,8 @@ app.RowView = Backbone.View.extend({
 
     events: {
         "click .remove-row": "deleteRow",
-        "click .editor-add": "addColumn"
+        "click .editor-add": "addColumn",
+        'drop': 'drop'
     },
 
     initialize: function () {
@@ -36,7 +37,7 @@ app.RowView = Backbone.View.extend({
             this.model.get("columns")
         );
         
-        this.listenTo(this.collection, "destroy", this.render);
+        this.listenTo(this.collection, "remove", this.removeColumn);
         this.listenTo(this.collection, "add", this.render);
         
     },
@@ -52,7 +53,7 @@ app.RowView = Backbone.View.extend({
         _.each(this.collection.models, function (column) {
             that.renderColumn(column);
         });
-
+        
         return this;
     },
 
@@ -63,13 +64,27 @@ app.RowView = Backbone.View.extend({
         });
 
         var $row = columnView.render().el;
-
+        
+        if(typeof columnView.bind_drag === "function") {
+            columnView.bind_drag();
+        }
+        
         this.$el.append($row);
 
     },
     
     addColumn: function(e) {
+        
         this.collection.add({});
+        
+    },
+    
+    removeColumn: function(model) {
+        
+        this.collection.remove(model);
+        
+        this.render();
+        
     },
 
     deleteRow: function (e) {

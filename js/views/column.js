@@ -19,7 +19,8 @@ app.ColumnView = Backbone.View.extend({
 
     events: {
         "click .edit-content": "editColumn",
-        "click .editor-delete": "deleteColumn"
+        "click .editor-delete": "deleteColumn",
+        'drop': 'drop'
     },
 
     template: _.template( $('#columnTemplate').html() ),
@@ -32,7 +33,6 @@ app.ColumnView = Backbone.View.extend({
     },
 
     render: function () {
-        
         
         if (typeof this.model.get('type') === "string") {
             this.model.set('type', _.findWhere(ajax_editor.some_value.types, {
