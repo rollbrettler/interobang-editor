@@ -38,7 +38,7 @@ app.RowView = Backbone.View.extend({
         );
         
         this.listenTo(this.collection, "remove", this.removeColumn);
-        this.listenTo(this.collection, "add", this.render);
+        this.listenTo(this.collection, "add", this.renderColumn);
         
     },
 
@@ -47,8 +47,14 @@ app.RowView = Backbone.View.extend({
         var that = this;
 
         var tmpl = _.template(this.template);
-
-        this.$el.html(tmpl(this.model.toJSON()));
+        
+        var templateData = this.model.toJSON();
+        
+        templateData.id = this.model.cid;
+        
+        console.log(this.model.cid);
+        
+        this.$el.html(tmpl(templateData));
 
         _.each(this.collection.models, function (column) {
             that.renderColumn(column);
@@ -63,13 +69,13 @@ app.RowView = Backbone.View.extend({
             model: column
         });
 
-        var $row = columnView.render().el;
+        var $column = columnView.render().el;
         
         if(typeof columnView.bind_drag === "function") {
             columnView.bind_drag();
         }
         
-        this.$el.append($row);
+        this.$el.append($column);
 
     },
     
@@ -83,6 +89,8 @@ app.RowView = Backbone.View.extend({
         
         this.collection.remove(model);
         
+        this.model.set('columns', this.collection.toJSON());
+        
         this.render();
         
     },
@@ -92,6 +100,7 @@ app.RowView = Backbone.View.extend({
         e.preventDefault();
         
         this.model.destroy();
-
+        
+        this.remove();
     }
 });

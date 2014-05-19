@@ -35,12 +35,17 @@ app.ColumnView = Backbone.View.extend({
     render: function () {
         
         if (typeof this.model.get('type') === "string") {
-            this.model.set('type', _.findWhere(ajax_editor.some_value.types, {
+            var type = _.findWhere(ajax_editor.some_value.types, {
                 'name': this.model.get('type')
-            }));
+            });
         }
         
-        this.$el.html( this.template( this.model.toJSON() ) );
+        var templateData = this.model.toJSON();
+        
+        templateData.type = type;
+        templateData.id = this.model.cid;
+        
+        this.$el.html( this.template( templateData ) );
         
         return this;
     },
@@ -50,6 +55,8 @@ app.ColumnView = Backbone.View.extend({
         e.preventDefault();
         
         this.model.destroy();
+        
+        this.remove();
         
     }
 });

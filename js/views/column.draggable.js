@@ -19,7 +19,7 @@ app.ColumnView = app.ColumnView.extend({
             placeholder: "",
             revert: true,
             stop: function (event, ui) {
-                ui.item.trigger('drop', ui.item.index());
+                //ui.item.trigger('drop', ui.item.index());
                 //console.log(ui.item.index());
             }
         });

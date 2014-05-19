@@ -8,7 +8,7 @@
     </div>
     
     <!-- columns template box -->
-    <div id="columns"></div>
+    <div class="columns"><%=id%></div>
     
     <!-- applied elements -->
     <div class="editor-row-settings text-center">
@@ -72,7 +72,7 @@
         </div>
         
         <!-- content icon -->
-        <a href="#" class="edit-content"><i class="<%= type.icon_css %> editor-content-icon"></i></a>
+        <a href="#" class="edit-content"><i class="<%= type.icon_css %> editor-content-icon"><%=id%></i></a>
         
         <!-- control elements -->
         <div class="editor-controls">

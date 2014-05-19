@@ -21,7 +21,7 @@ app.RowView = app.RowView.extend({
             placeholder: "editor-row row",
             revert: true,
             stop: function (event, ui) {
-                ui.item.trigger('drop', ui.item.index());
+                //ui.item.trigger('drop', ui.item.index());
                 console.log(ui.item.index());
             }
         });
