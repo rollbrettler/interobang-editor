@@ -24,5 +24,7 @@ app.RowModel = Backbone.Model.extend({
             "top": 0
         },
         "columns": false
-    }
+    },
+    
+    url: ""
 });

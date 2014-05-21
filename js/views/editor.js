@@ -12,28 +12,36 @@ app.EditorView = Backbone.View.extend({
 
         this.data = attr.data;
         
+        this.editorRows = this.$('.editor-rows');
+        this.editorAddRow = this.$('.editor-row-add');
+        
+        this.editorSettings = this.$('.editor-settings');
+        
+        this.renderRowAdd();
+        
         this.collection = new app.RowsCollection(attr.data || {});
-
-        this.editorContent = this.$el.find('.editor-content');
-        this.editorSettings = this.$el.find('.editor-settings');
         
         this.listenTo(this.collection, "all", this.saveCollection);
         
-        //this.render();
+        this.listenTo(this.collection, "add", this.renderRow);
+        this.listenTo(this.collection, "remove", this.removeRow);
+        
+        this.i = 0;
+        
     },
 
     events: {
-        
+        "click #add-row": "addRow" 
     },
 
     render: function () {
         
         var that = this;
         
-        this.editorContent.children().remove();
+        this.editorRows.children().remove();
         
-        _.each(this.collection.models, function (row) {
-            console.log(row);
+        this.collection.each(function (row) {
+            console.log(++that.i);
             that.renderRow(row);
         });
         
@@ -41,27 +49,49 @@ app.EditorView = Backbone.View.extend({
     },
 
     renderRow: function (row) {
-        
+        console.log("row: ",row);
         var rowView = new app.RowView({
             model: row
         });
         
         var $row = rowView.render().el;
-        /*
-        if (this.$el.find('.editor-add-row').length) {
-            this.$el.find('.editor-add-row').before($row);
-        } else {
-            this.editorContent.append($row);
-        }*/
         
-        this.el.append($row);
+        this.editorRows.append($row);
         
         if(typeof rowView.bind_drag === "function") {
             rowView.bind_drag();
         }
     },
     
-    saveCollection: function() {
-        this.render();
+    addRow: function() {
+        this.collection.add({});
+    },
+    
+    renderRowAdd: function(){
+        var rowAddView = Backbone.View.extend({
+            tagName: "div",
+            className: "editor-row editor-add-row row",
+            template: jQuery("#rowLastTemplate").html(),
+            
+            render: function () {
+                
+                var tmpl = _.template(this.template);
+                
+                jQuery(this.el).html(tmpl({}));
+                
+                return this;
+            }
+        });
+        
+        this.editorAddRow.html(new rowAddView().render().el);
+    },
+    
+    removeRow: function(row) {
+        row.destroy();
+    },
+    
+    saveCollection: function(e) {
+        console.log("save & render", this.collection.toJSON());
+        
     }
 });

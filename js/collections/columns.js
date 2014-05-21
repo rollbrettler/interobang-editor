@@ -12,5 +12,5 @@ app.ColumnsCollection = Backbone.Collection.extend({
     comparator: function (model) {
         return model.get('ordinal');
     }
-
+    
 });

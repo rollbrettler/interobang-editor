@@ -1,5 +1,10 @@
 <div class="editor-content">
-    
+    <div class="editor-rows">
+        
+    </div>
+    <div class="editor-row-add">
+        
+    </div>
 </div>
 <script id="rowTemplate" type="text/template">
     <!-- draggable area -->
@@ -8,7 +13,7 @@
     </div>
     
     <!-- columns template box -->
-    <div class="columns"><%=id%></div>
+    <div class="columns"></div>
     
     <!-- applied elements -->
     <div class="editor-row-settings text-center">
@@ -72,7 +77,7 @@
         </div>
         
         <!-- content icon -->
-        <a href="#" class="edit-content"><i class="<%= type.icon_css %> editor-content-icon"><%=id%></i></a>
+        <a href="#" class="edit-content"><i class="<%= type.icon_css %> editor-content-icon"></i></a>
         
         <!-- control elements -->
         <div class="editor-controls">

@@ -8,7 +8,7 @@ var app = app || {};
 app.RowView = Backbone.View.extend({
     tagName: "div",
     className: "editor-row row",
-    template: jQuery("#rowTemplate").html(),
+    template: _.template( $('#rowTemplate').html() ),
 
     events: {
         "click .remove-row": "deleteRow",
@@ -45,16 +45,12 @@ app.RowView = Backbone.View.extend({
     render: function () {
 
         var that = this;
-
-        var tmpl = _.template(this.template);
         
         var templateData = this.model.toJSON();
         
         templateData.id = this.model.cid;
         
-        console.log(this.model.cid);
-        
-        this.$el.html(tmpl(templateData));
+        this.$el.html(this.template(templateData));
 
         _.each(this.collection.models, function (column) {
             that.renderColumn(column);
@@ -82,6 +78,8 @@ app.RowView = Backbone.View.extend({
     addColumn: function(e) {
         
         this.collection.add({});
+        
+        this.render();
         
     },
     
