@@ -14,7 +14,7 @@ app.RowView = app.RowView.extend({
     bind_drag: function () {
 
         // sortable settings
-        $(".editor-content").sortable({
+        $(".editor-rows").sortable({
             cursor: "move",
             handle: ".editor-drag",
             items: ".editor-row:not(.editor-add-column)",

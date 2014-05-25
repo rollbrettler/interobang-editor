@@ -31,7 +31,7 @@ app.EditorView = Backbone.View.extend({
     },
 
     events: {
-        "click #add-row": "addRow" 
+        "click #add-row": "addRow"
     },
 
     render: function () {
@@ -41,7 +41,7 @@ app.EditorView = Backbone.View.extend({
         this.editorRows.children().remove();
         
         this.collection.each(function (row) {
-            console.log(++that.i);
+            //console.log(++that.i);
             that.renderRow(row);
         });
         
@@ -49,7 +49,8 @@ app.EditorView = Backbone.View.extend({
     },
 
     renderRow: function (row) {
-        console.log("row: ",row);
+        //console.log("row: ",row);
+        
         var rowView = new app.RowView({
             model: row
         });
@@ -63,7 +64,8 @@ app.EditorView = Backbone.View.extend({
         }
     },
     
-    addRow: function() {
+    addRow: function(e) {
+        e.preventDefault();
         this.collection.add({});
     },
     

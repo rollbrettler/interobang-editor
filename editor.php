@@ -30,7 +30,8 @@ $editor_settings_assoc = json_decode($json, true);
             ajax_editor['some_value'] = <?= $json ?>;
         </script>
     </div>
-    <!-- depencies -->
+    
+    <!-- dependencies -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/jquery-ui/ui/jquery-ui.js"></script>
     <script src="bower_components/underscore/underscore.js"></script>
@@ -44,17 +45,20 @@ $editor_settings_assoc = json_decode($json, true);
     <script src="js/models/column.js"></script>
     <script src="js/collections/columns.js"></script>
     <script src="js/views/column.js"></script>
-    <!--script src="js/views/column.draggable.js"></script>
+    <script src="js/views/column.draggable.js"></script>
+    
     <!-- Row -->
     <script src="js/models/row.js"></script>
     <script src="js/collections/rows.js"></script>
     <script src="js/views/row.js"></script>
-    <!--script src="js/views/row.draggable.js"></script>
+    <script src="js/views/row.draggable.js"></script>
     
+    <!-- Settings -->
+    <!-- #ToDo -->
     
     <!-- main script -->
     <script src="js/views/editor.js"></script>
-    <!--script src="js/views/editor.draggable.js"></script-->
+    <script src="js/views/editor.draggable.js"></script>
     <script src="js/interobang-editor.js"></script>
 </body>
 

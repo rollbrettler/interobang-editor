@@ -2,15 +2,13 @@
 
 var app = app || {};
 
+//app.bottstrapEvents.push({"update-sort": "updateSortRow"})
+
 // Editor Main View
 // ----------
 // 
 
 app.EditorView = app.EditorView.extend({
-
-    events: {
-        'update-sort': 'updateSortRow'
-    },
 
     updateSortRow: function (event, model, position) {
 
@@ -35,4 +33,5 @@ app.EditorView = app.EditorView.extend({
 
         this.render();
     }
+    
 });
