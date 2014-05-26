@@ -2,22 +2,29 @@
 
 var app = app || {};
 
-// Column View
+// Row View
 // ----------
 // 
-app.RowView = Backbone.View.extend({
+
+app.RowViewModules = {};
+app.RowViewModules.events = {};
+app.RowViewModules.functions = [];
+
+app.RowView = app.modulesView.extend({
     tagName: "div",
     className: "editor-row row",
     template: _.template( $('#rowTemplate').html() ),
 
     events: {
         "click .remove-row": "deleteRow",
-        "click .editor-add": "addColumn",
-        'drop': 'drop'
+        "click .editor-add": "addColumn"
     },
 
     initialize: function () {
-
+        
+        // add modules
+        this.setModulesObject(app.RowViewModules);
+        
         // check if it is a row with empty columns and add template columns
         if (!this.model.get('columns')) {
 
@@ -51,6 +58,8 @@ app.RowView = Backbone.View.extend({
         templateData.id = this.model.cid;
         
         this.$el.html(this.template(templateData));
+        
+        this.columnElement = this.$('.columns');
 
         _.each(this.collection.models, function (column) {
             that.renderColumn(column);
@@ -71,13 +80,15 @@ app.RowView = Backbone.View.extend({
             columnView.bind_drag();
         }
         
-        this.$el.append($column);
+        this.columnElement.append($column);
 
     },
     
     addColumn: function(e) {
         
         this.collection.add({});
+        
+        this.model.set('columns', this.collection.toJSON());
         
         this.render();
         

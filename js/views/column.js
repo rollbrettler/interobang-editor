@@ -2,10 +2,16 @@
 
 var app = app || {};
 
-// Column View
+// draggable column View module
 // ----------
 // 
-app.ColumnView = Backbone.View.extend({
+
+app.ColumnViewModules = {};
+app.ColumnViewModules.events = {};
+app.ColumnViewModules.functions = [];
+
+app.ColumnView = app.modulesView.extend({
+    
     tagName: "div",
     className: function () {
         var className = "columns";
@@ -26,6 +32,8 @@ app.ColumnView = Backbone.View.extend({
     template: _.template( $('#columnTemplate').html() ),
 
     initialize: function () {
+        
+        this.setModulesObject(app.ColumnViewModules);
         
         this.listenTo(this.model, 'change', this.render);
         

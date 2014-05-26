@@ -5,14 +5,24 @@ var app = app || {};
 // Column View
 // ----------
 // 
-app.ColumnView = app.ColumnView.extend({
+
+_.extend(app.ColumnViewModules.events, {
+    'drop': 'drop'
+});
+
+//app.ColumnViewModules.functions.push("bind_drag");
+
+app.ColumnViewModules.draggable
+
+app.ColumnViewModules.draggable = {
 
     drop: function (event, index) {
         this.$el.trigger('update-sort', [this.model, index]);
     },
 
     bind_drag: function () {
-        $(".editor-row").sortable({
+        
+        jQuery(".editor-row").sortable({
             cursor: "move",
             handle: ".editor-drag",
             items: ".columns",
@@ -28,4 +38,4 @@ app.ColumnView = app.ColumnView.extend({
     unbind_drag: function () {
         jQuery(".editor-row").sortable("destroy");
     }
-});
+};

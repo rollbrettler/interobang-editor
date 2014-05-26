@@ -5,6 +5,15 @@ app.modulesView = Backbone.View.extend({
 
     setModulesObject: function (modulesObject) {
         this.modulesObject = modulesObject;
+        
+        // iterate trough object and add functions
+        this.loadModules();
+        
+        // append modules events
+        this.appendEvents();
+        
+        // executes the module initit functions
+        this.executeModule();
     },
 
     loadModules: function () {

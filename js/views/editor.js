@@ -15,17 +15,8 @@ app.EditorView = app.modulesView.extend({
     
     initialize: function (attr) {
 
-        // add modules object
+        // add modules
         this.setModulesObject(app.EditorViewModules);
-        // iterate trough object and add functions
-        this.loadModules();
-        
-        // append modules events
-        this.appendEvents();
-        
-        // executes the module initit functions
-        this.executeModule();
-        
         
         //set some references for HTML elements
         this.editorRows = this.$('.editor-rows');
@@ -122,6 +113,7 @@ app.EditorView = app.modulesView.extend({
                 )
             )
         );
+        console.log(this.collection.toJSON());
     },
     
     getCollection: function() {

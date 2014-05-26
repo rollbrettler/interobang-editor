@@ -2,10 +2,16 @@
 
 var app = app || {};
 
-// row View
+// draggable row View module
 // ----------
 // 
-app.RowView = app.RowView.extend({
+_.extend(app.RowViewModules.events, {
+    'drop': 'drop'
+});
+
+app.RowViewModules.functions.push("bind_drag");
+
+app.RowViewModules.draggable = {
 
     drop: function (event, index) {
         this.$el.trigger('update-sort', [this.model, index]);
@@ -14,22 +20,22 @@ app.RowView = app.RowView.extend({
     bind_drag: function () {
 
         // sortable settings
-        $(".editor-rows").sortable({
+        jQuery(".editor-rows").sortable({
             cursor: "move",
             handle: ".editor-drag",
             items: ".editor-row:not(.editor-add-column)",
             placeholder: "editor-row row",
             revert: true,
             stop: function (event, ui) {
-                //ui.item.trigger('drop', ui.item.index());
+                ui.item.trigger('drop', ui.item.index());
                 console.log(ui.item.index());
             }
         });
-
+        
     },
 
     unbind_drag: function () {
-        jQuery(".editor-content").sortable("destroy");
+        jQuery(".editor-rows").sortable("destroy");
     },
 
     updateSortColumn: function (event, model, position) {
@@ -56,4 +62,4 @@ app.RowView = app.RowView.extend({
 
         this.render();
     }
-});
+};
