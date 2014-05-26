@@ -13,5 +13,11 @@ app.ColumnModel = Backbone.Model.extend({
         sizeSmall: '4',
         sizeMedium: '4',
         sizeLarge: '4'
+    },
+    
+    initialize: function () {
+        if(!this.get('id')) {
+            this.set('id', guid());
+        }
     }
 });

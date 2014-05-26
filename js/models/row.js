@@ -26,5 +26,11 @@ app.RowModel = Backbone.Model.extend({
         "columns": false
     },
     
-    url: ""
+    url: "",
+    
+    initialize: function () {
+        if(!this.get('id')) {
+            this.set('id', guid());
+        }
+    }
 });

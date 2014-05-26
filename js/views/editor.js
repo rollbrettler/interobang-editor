@@ -34,6 +34,7 @@ app.EditorView = app.modulesView.extend({
         
         this.editorSettings = this.$('.editor-settings');
         
+        // render the add row segment
         this.renderRowAdd();
         
         
