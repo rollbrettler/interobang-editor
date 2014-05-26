@@ -2,18 +2,22 @@
 
 var app = app || {};
 
-//app.bottstrapEvents.push({"update-sort": "updateSortRow"})
-
-// Editor Main View
+// Editor Draggable Module
 // ----------
 // 
 
-app.EditorView = app.EditorView.extend({
+_.extend(app.EditorViewModules.events, {
+    'update-sort': 'updateSortRow'
+});
+
+//app.EditorViewModules.functions.push("");
+
+app.EditorViewModules.draggable = {
 
     updateSortRow: function (event, model, position) {
 
         this.collection.remove(model);
-        
+
         this.collection.each(function (model, index) {
             var ordinal = index;
             if (index >= position)
@@ -33,5 +37,5 @@ app.EditorView = app.EditorView.extend({
 
         this.render();
     }
-    
-});
+
+}

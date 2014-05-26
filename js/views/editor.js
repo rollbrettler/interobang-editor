@@ -6,20 +6,41 @@ var app = app || {};
 // ----------
 // 
 
-app.EditorView = Backbone.View.extend({
+app.EditorViewModules = {};
+app.EditorViewModules.events = {};
+app.EditorViewModules.functions = [];
+
+app.EditorView = app.modulesView.extend({
     el: jQuery("#editorApp"),
+    
     initialize: function (attr) {
 
-        this.data = attr.data;
+        // add modules object
+        this.setModulesObject(app.EditorViewModules);
+        // iterate trough object and add functions
+        this.loadModules();
         
+        // append modules events
+        this.appendEvents();
+        
+        // executes the module initit functions
+        this.executeModule();
+        
+        
+        //set some references for HTML elements
         this.editorRows = this.$('.editor-rows');
         this.editorAddRow = this.$('.editor-row-add');
+        this.metaData = jQuery('#editor-meta');
         
         this.editorSettings = this.$('.editor-settings');
         
         this.renderRowAdd();
         
-        this.collection = new app.RowsCollection(attr.data || {});
+        
+        // get Collection data and set it
+        this.getCollection();
+        
+        this.collection = new app.RowsCollection(this.data || {});
         
         this.listenTo(this.collection, "all", this.saveCollection);
         
@@ -93,7 +114,22 @@ app.EditorView = Backbone.View.extend({
     },
     
     saveCollection: function(e) {
-        console.log("save & render", this.collection.toJSON());
-        
+        this.metaData.val(
+            Base64.encode(
+                JSON.stringify(
+                    this.collection.toJSON()
+                )
+            )
+        );
+    },
+    
+    getCollection: function() {
+        if(this.metaData.val().length) {
+            this.data = jQuery.parseJSON(
+                Base64.decode(
+                    this.metaData.val()
+                )
+            );
+        }
     }
 });
