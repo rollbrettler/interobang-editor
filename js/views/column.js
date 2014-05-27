@@ -25,8 +25,7 @@ app.ColumnView = app.modulesView.extend({
 
     events: {
         "click .edit-content": "editColumn",
-        "click .editor-delete": "deleteColumn",
-        'drop': 'drop'
+        "click .editor-delete": "deleteColumn"
     },
 
     template: _.template( $('#columnTemplate').html() ),
@@ -35,7 +34,11 @@ app.ColumnView = app.modulesView.extend({
         
         this.setModulesObject(app.ColumnViewModules);
         
-        this.listenTo(this.model, 'change', this.render);
+        //this.listenTo(this.model, 'change', this.render);
+        
+        this.model.on('change', this.render, this);
+        this.model.on('remove', this.render, this);
+        this.model.on('add', this.render, this);
         
         this.render();
     },
@@ -66,5 +69,10 @@ app.ColumnView = app.modulesView.extend({
         
         this.remove();
         
+    },
+    
+    editColumn: function(e) {
+        e.preventDefault();
+        console.log(this.model.set({type:"empty"}));
     }
 });

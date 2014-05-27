@@ -72,9 +72,6 @@ app.EditorView = app.modulesView.extend({
         
         this.editorRows.append($row);
         
-        if(typeof rowView.bind_drag === "function") {
-            rowView.bind_drag();
-        }
     },
     
     addRow: function(e) {

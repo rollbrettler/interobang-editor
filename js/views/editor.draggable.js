@@ -16,8 +16,10 @@ app.EditorViewModules.draggable = {
 
     updateSortRow: function (event, model, position) {
 
-        this.collection.remove(model);
-
+        this.removeRow(model);
+        
+        console.log("updateSortRow", model);
+        
         this.collection.each(function (model, index) {
             var ordinal = index;
             if (index >= position)

@@ -6,7 +6,8 @@ var app = app || {};
 // ----------
 // 
 _.extend(app.RowViewModules.events, {
-    'drop': 'drop'
+    'drop': 'drop',
+    'update-sort-column': 'updateSortColumn'
 });
 
 app.RowViewModules.functions.push("bind_drag");
@@ -14,7 +15,7 @@ app.RowViewModules.functions.push("bind_drag");
 app.RowViewModules.draggable = {
 
     drop: function (event, index) {
-        this.$el.trigger('update-sort', [this.model, index]);
+        this.$el.trigger('update-sort-row', [this.model, index]);
     },
 
     bind_drag: function () {
@@ -41,7 +42,9 @@ app.RowViewModules.draggable = {
     updateSortColumn: function (event, model, position) {
 
         this.collection.remove(model);
-
+        
+        console.log("updateSortColumn", model);
+        
         this.collection.each(function (model, index) {
             var ordinal = index;
             if (index >= position)
@@ -54,7 +57,7 @@ app.RowViewModules.draggable = {
         this.collection.add(model, {
             at: position
         });
-
+        
         // to update ordinals on server:
         var ids = this.collection.pluck('id');
 

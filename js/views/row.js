@@ -45,6 +45,7 @@ app.RowView = app.modulesView.extend({
         );
         
         this.listenTo(this.collection, "remove", this.removeColumn);
+        this.listenTo(this.collection, "change", this.changeColumn);
         this.listenTo(this.collection, "add", this.renderColumn);
         
     },
@@ -59,7 +60,7 @@ app.RowView = app.modulesView.extend({
         
         this.$el.html(this.template(templateData));
         
-        this.columnElement = this.$('.columns');
+        this.columnElement = this.$('.column-container');
 
         _.each(this.collection.models, function (column) {
             that.renderColumn(column);
@@ -69,22 +70,23 @@ app.RowView = app.modulesView.extend({
     },
 
     renderColumn: function (column) {
-
+        
+        // console.info("renderColumn",column);
+        
         var columnView = new app.ColumnView({
             model: column
         });
-
+        
         var $column = columnView.render().el;
         
-        if(typeof columnView.bind_drag === "function") {
-            columnView.bind_drag();
-        }
-        
         this.columnElement.append($column);
-
+        
+        this.model.set('columns', this.collection.toJSON());
     },
     
     addColumn: function(e) {
+        
+        e.preventDefault();
         
         this.collection.add({});
         
@@ -111,5 +113,9 @@ app.RowView = app.modulesView.extend({
         this.model.destroy();
         
         this.remove();
+    },
+    
+    changeColumn: function(e) {
+        this.model.set('columns', this.collection.toJSON());
     }
 });

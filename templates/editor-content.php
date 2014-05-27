@@ -13,7 +13,7 @@
     </div>
     
     <!-- columns template box -->
-    <div class="columns"></div>
+    <div class="column-container"></div>
     
     <!-- applied elements -->
     <div class="editor-row-settings text-center">
