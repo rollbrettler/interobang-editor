@@ -48,7 +48,7 @@
     <div class="editor-controls">
         <!-- edit row settings -->
         <div class="editor-edit">
-            <a href="#edit-row">
+            <a class="edit-content" href="#">
                 <i class="fa fa-pencil"></i>
             </a>
         </div>
@@ -77,13 +77,13 @@
         </div>
         
         <!-- content icon -->
-        <a href="#" class="edit-content"><i class="<%= type.icon_css %> editor-content-icon"></i></a>
+        <a href="#edit/<%= id %>" class="edit-content"><i class="<%= type.icon_css %> editor-content-icon"></i></a>
         
         <!-- control elements -->
         <div class="editor-controls">
             <!-- edit column settings -->
             <div class="editor-edit">
-                <a href="#edit-column/">
+                <a class="edit-content" href="#edit/<%= id %>">
                     <i class="fa fa-pencil"></i>
                 </a>
             </div>

@@ -19,15 +19,12 @@ app.EditorView = app.modulesView.extend({
         this.setModulesObject(app.EditorViewModules);
         
         //set some references for HTML elements
+        this.editorContent = this.$('.editor-content');
         this.editorRows = this.$('.editor-rows');
         this.editorAddRow = this.$('.editor-row-add');
         this.metaData = jQuery('#editor-meta');
         
         this.editorSettings = this.$('.editor-settings');
-        
-        // render the add row segment
-        this.renderRowAdd();
-        
         
         // get Collection data and set it
         this.getCollection();
@@ -38,6 +35,10 @@ app.EditorView = app.modulesView.extend({
         
         this.listenTo(this.collection, "add", this.renderRow);
         this.listenTo(this.collection, "remove", this.removeRow);
+        
+        
+        this.on("edit-content", this.editContent);
+        this.on("save-content", this.saveContent);
         
         this.i = 0;
         
@@ -52,11 +53,13 @@ app.EditorView = app.modulesView.extend({
         var that = this;
         
         this.editorRows.children().remove();
-        
         this.collection.each(function (row) {
             //console.log(++that.i);
             that.renderRow(row);
         });
+        
+        // render the add row segment
+        this.renderRowAdd();
         
         return this;
     },
@@ -80,6 +83,7 @@ app.EditorView = app.modulesView.extend({
     },
     
     renderRowAdd: function(){
+        
         var rowAddView = Backbone.View.extend({
             tagName: "div",
             className: "editor-row editor-add-row row",
@@ -121,5 +125,16 @@ app.EditorView = app.modulesView.extend({
                 )
             );
         }
+    },
+    
+    editContent: function(){
+        this.editorContent.hide();
+        this.editorSettings.show();
+    },
+    
+    saveContent: function() {
+        this.saveCollection();
+        this.editorContent.show();
+        this.editorSettings.hide();
     }
 });

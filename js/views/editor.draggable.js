@@ -18,7 +18,7 @@ app.EditorViewModules.draggable = {
 
         this.removeRow(model);
         
-        console.log("updateSortRow", model);
+        // console.log("updateSortRow", model);
         
         this.collection.each(function (model, index) {
             var ordinal = index;
@@ -35,7 +35,7 @@ app.EditorViewModules.draggable = {
         // to update ordinals on server:
         var ids = this.collection.pluck('id');
 
-        console.log('post ids to server: ' + ids.join(', '));
+        //console.log('post ids to server: ' + ids.join(', '));
 
         this.render();
     }
