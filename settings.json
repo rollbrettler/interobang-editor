@@ -1,48 +1,65 @@
 {
     "css_selector": {
         "main": "columns",
-        "xsmall": "",
-        "small": "small-",
-        "medium": "medium-",
-        "large": "large-",
-        "xlarge": ""
+        "sizes": [{
+            "name": "Extra Small",
+            "css": "",
+            "slug": "xsmall"
+        }, {
+            "name": "Small",
+            "css": "small-",
+            "slug": "small"
+        }, {
+            "name": "Medium",
+            "css": "medium-",
+            "slug": "medium"
+        }, {
+            "name": "Large",
+            "css": "large-",
+            "slug": "large"
+        }, {
+            "name": "Extra Large",
+            "css": "",
+            "slug": "xlarge"
+        }],
+        "columns": 12
     },
 
     "types": [
 
-            {
-                "name": "empty",
-                "icon_css": "fa fa-square-o"
+        {
+            "name": "empty",
+            "icon_css": "fa fa-square-o"
             },
-            
-            {
-                "name": "text",
-                "icon_css": "fa fa-font"
+
+        {
+            "name": "text",
+            "icon_css": "fa fa-font"
             },
-            
-            {
-                "name": "video",
-                "icon_css": "fa fa-film"
+
+        {
+            "name": "video",
+            "icon_css": "fa fa-film"
             },
-            
-            {
-                "name": "image",
-                "icon_css": "fa fa-picture-o"
+
+        {
+            "name": "image",
+            "icon_css": "fa fa-picture-o"
             },
-            
-            {
-                "name": "slider",
-                "icon_css": "fa fa-play-circle"
+
+        {
+            "name": "slider",
+            "icon_css": "fa fa-play-circle"
             },
-            
-            {
-                "name": "widget",
-                "icon_css": "fa fa-puzzle-piece"
+
+        {
+            "name": "widget",
+            "icon_css": "fa fa-puzzle-piece"
             },
-            
-            {
-                "name": "html",
-                "icon_css": "fa fa-html5"
+
+        {
+            "name": "html",
+            "icon_css": "fa fa-html5"
             }
 
         ]

@@ -14,9 +14,9 @@ app.SettingsView = app.modulesView.extend({
     //el: jQuery('.editor-settings'),
     template: jQuery("#settingsTemplate").html(),
     initialize: function (options) {
-        
+
         //this. = options.;
-        
+
         this.types = [];
 
         // add modules
@@ -26,16 +26,16 @@ app.SettingsView = app.modulesView.extend({
 
     types: [],
 
-    typesViews: [],
+    subViews: [],
 
     events: {
         'click .save-settings': 'saveSettings'
     },
 
-    render: function () {
+    renderColumnSettings: function () {
 
         //console.log(this.model);
-        
+
         // render main template
         var tmpl = _.template(this.template);
         templateData = this.model.toJSON();
@@ -43,8 +43,8 @@ app.SettingsView = app.modulesView.extend({
         templateData.types = this.types;
 
         jQuery(this.el).html(tmpl(templateData));
-        
-        
+
+
         // render editor type chooser
         var editorChooser = this.$el.find(".editor-chooser");
 
@@ -53,45 +53,51 @@ app.SettingsView = app.modulesView.extend({
         if (this.types.length > 1) {
             _.each(this.types, function (type) {
 
-                var count = that.typesViews.push(new app.ChooserView({
+                var count = that.subViews.push(new app.ChooserView({
                     type: type,
                     parent: that
                 }));
 
-                editorChooser.append(that.typesViews[count - 1].render().el);
-                
+                editorChooser.append(that.subViews[count - 1].render().el);
+
             });
         }
-        
+
         this.on("changeType", this.setType);
-        
+
         // render size chooser
-        
+
+        _.each(app.Settings.css_selector.sizes, function (size) {
+            if (size.css) {
+
+                var sizeView = new app.SizeView({
+                    size: size,
+                    model: that.model
+                });
+                
+                that.$el.find('#settings').append(sizeView.render().el);
+                
+                that.subViews.push(sizeView);
+            }
+        });
+
         return this;
     },
-
-    /*
-    renderColumnSettings: function () {
-        var tmpl = _.template(this.template);
-
-        console.log("settings model: ", this.collection.toJSON());
-
-        jQuery(this.el).html(tmpl(this.model.toJSON()));
-    },*/
 
     saveSettings: function () {
 
         app.EditorContentView.trigger("save-content");
 
         //console.log(this.typesViews);
-
-        _.each(this.typesViews, function (chooserView) {
-            chooserView.remove()
+        
+        // remove all subviews
+        _.each(this.subViews, function (subView) {
+            subView.remove()
         })
 
         this.remove();
     },
-    
+
     setType: function (type) {
         this.model.set("type", type);
     }

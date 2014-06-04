@@ -19,7 +19,7 @@ $editor_settings_assoc = json_decode($json, true);
 
 <body>
     <div style="width: 840px;margin: auto;" id="editorApp" class="foundation-init editor">
-        <input type="hidden" id="editor-meta" class="editor-meta" name="meta[editor-meta]" value="W3siaWQiOiJiZDhjZTRlOC00OGMxLTU3ZjQtMTNiZC1mZTIzMDVjMzhhYmYiLCJ2aXNpYmxlIjp0cnVlLCJiZ19jb2xvciI6IiIsImJnX2ltYWdlIjoiIiwiZnVsbHNpemUiOmZhbHNlLCJtYXJnaW4iOnsiYm90dG9tIjowLCJ0b3AiOjB9LCJwYWRkaW5nIjp7ImJvdHRvbSI6MCwibGVmdCI6MCwicmlnaHQiOjAsInRvcCI6MH0sImNvbHVtbnMiOlt7InR5cGUiOiJ0ZXh0IiwidmFsdWUiOiIiLCJzaXplU21hbGwiOiI0Iiwic2l6ZU1lZGl1bSI6IjQiLCJzaXplTGFyZ2UiOiI0IiwiaWQiOiI4Y2ZhZTc2OS1mNTE3LTdmM2MtMWUxMi04NjRjZmYyZTk3ZGYifSx7InR5cGUiOiJ0ZXh0IiwidmFsdWUiOiIiLCJzaXplU21hbGwiOiI0Iiwic2l6ZU1lZGl1bSI6IjQiLCJzaXplTGFyZ2UiOiI0IiwiaWQiOiJhYmE1ZjZkZC0wNDk4LTJhNmQtNGY5NS04NjQ5MzZkOTFjYWEifSx7InR5cGUiOiJ0ZXh0IiwidmFsdWUiOiIiLCJzaXplU21hbGwiOiI0Iiwic2l6ZU1lZGl1bSI6IjQiLCJzaXplTGFyZ2UiOiI0IiwiaWQiOiIxMWI1ZjA5My1mMWEyLWJmNzUtNDFiNC0wNjk2MmIyODczZmUifV19XQ==">
+        <input type="hidden" id="editor-meta" class="editor-meta" name="meta[editor-meta]" value="">
         
         <?php include "templates/editor-content.php" ?>
     

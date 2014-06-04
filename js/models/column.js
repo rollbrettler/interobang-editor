@@ -10,9 +10,11 @@ app.ColumnModel = Backbone.Model.extend({
     defaults: {
         type: 'text',
         value: '',
-        sizeSmall: '4',
-        sizeMedium: '4',
-        sizeLarge: '4'
+        xsmall: '4',
+        small: '4',
+        medium: '4',
+        large: '4',
+        xlarge: '4'
     },
     
     initialize: function () {

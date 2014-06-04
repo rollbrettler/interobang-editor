@@ -14,11 +14,15 @@ app.ColumnView = app.modulesView.extend({
 
     tagName: "div",
     className: function () {
-        var className = "columns";
-
-        className += " small-" + this.model.get('sizeSmall');
-        className += " medium-" + this.model.get('sizeMedium');
-        className += " large-" + this.model.get('sizeLarge');
+        var className = app.Settings.css_selector.main;
+        
+        var that = this;
+        
+        _.each(app.Settings.css_selector.sizes, function(size) {
+            if(size.css) {
+                className += " " + size.css + that.model.get(size.slug)
+            }
+        });
 
         return className;
     },
@@ -87,15 +91,15 @@ app.ColumnView = app.modulesView.extend({
             model: this.model
         });
 
-        jQuery('.editor-settings').html(this.editView.render().el);
+        jQuery('.editor-settings').html(this.editView.renderColumnSettings().el);
 
-        this.editView.on("save-settings", this.saveColumn);
+        this.editView.on("save-settings", this.saveColumnSettings);
         
         jQuery(document).foundation();
         
     },
 
-    saveColumn: function () {
+    saveColumnSettings: function () {
         this.editView.remove();
         //console.log(this.editView);
     }
