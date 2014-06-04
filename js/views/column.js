@@ -46,9 +46,15 @@ app.ColumnView = app.modulesView.extend({
     render: function () {
 
         if (typeof this.model.get('type') === "string") {
-            var type = _.findWhere(ajax_editor.some_value.types, {
+            var type = _.findWhere(app.Settings.types, {
                 'name': this.model.get('type')
             });
+            
+            if (typeof type === "undefined") {
+                type = _.findWhere(app.Settings.types, {
+                    'name': 'empty'
+                });
+            }
         }
 
         var templateData = this.model.toJSON();
@@ -70,25 +76,28 @@ app.ColumnView = app.modulesView.extend({
         this.remove();
 
     },
-    
+
     editColumn: function (e) {
-        
+
         e.preventDefault();
-        
+
         app.EditorContentView.trigger("edit-content");
-        
+
         this.editView = new app.SettingsView({
             model: this.model
         });
-        
-        this.editView.render();
-        
+
+        jQuery('.editor-settings').html(this.editView.render().el);
+
         this.editView.on("save-settings", this.saveColumn);
         
+        jQuery(document).foundation();
+        
     },
-    
-    saveColumn: function() {
+
+    saveColumn: function () {
         this.editView.remove();
+        //console.log(this.editView);
     }
 
 });

@@ -22,15 +22,20 @@
         </div>
         <div class="content active" id="settings">
             <div class="row editor-chooser">
-                <% _.each(types, function(type) { %>
-                    <div class="columns small-2">
-                        <div class="editor-inner-column editor-content-chooser clearfix">
-                            <i class="<%= type->icon_css %> editor-chooser-icon left"></i>
-                            <p class="editor-chooser-description right "><?= $editor_text[$type->name]['chooser']; ?></p>
-                        </div>
-                    </div>
-                <% }); %>
+                
             </div>
         </div>
+    </div>
+</script>
+<script id="typesTemplate" type="text/template">
+    <div class="editor-inner-column editor-content-chooser clearfix">
+        <i class="<%= icon_css %> editor-chooser-icon left"></i>
+        <p class="editor-chooser-description right ">test</p>
+    </div>
+</script>
+<script id="sizeTemplate" type="text/template">
+    <div class="editor-inner-column editor-content-chooser clearfix">
+        <i class="<%= icon_css %> editor-chooser-icon left"></i>
+        <p class="editor-chooser-description right ">test</p>
     </div>
 </script>

@@ -7,11 +7,26 @@ var app = app || {};
 // 
 
 _.extend(app.SettingsViewModules.events, {
-    
+
 });
 
-//app.EditorViewModules.functions.push("");
+app.SettingsViewModules.functions.push(["addText"]);
 
 app.SettingsViewModules.text = {
     
+    addText: function () {
+        
+        type = _.findWhere(app.Settings.types, {
+            'name': 'text'
+        });
+        
+        this.types.push(type);
+        
+        this.listenTo(this, 'changeType:text', this.renderText);
+        
+    },
+    
+    renderText: function() {
+        
+    }
 }

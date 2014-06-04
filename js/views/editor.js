@@ -14,7 +14,7 @@ app.EditorView = app.modulesView.extend({
     el: jQuery("#editorApp"),
     
     initialize: function (attr) {
-
+        
         // add modules
         this.setModulesObject(app.EditorViewModules);
         
@@ -29,7 +29,7 @@ app.EditorView = app.modulesView.extend({
         // get Collection data and set it
         this.getCollection();
         
-        this.collection = new app.RowsCollection(this.data || {});
+        this.collection = new app.RowsCollection(app.Data || {});
         
         this.listenTo(this.collection, "all", this.saveCollection);
         
@@ -119,7 +119,7 @@ app.EditorView = app.modulesView.extend({
     
     getCollection: function() {
         if(this.metaData.val().length) {
-            this.data = jQuery.parseJSON(
+            app.Data = jQuery.parseJSON(
                 Base64.decode(
                     this.metaData.val()
                 )

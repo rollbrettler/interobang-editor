@@ -19,15 +19,15 @@ $editor_settings_assoc = json_decode($json, true);
 
 <body>
     <div style="width: 840px;margin: auto;" id="editorApp" class="foundation-init editor">
-        <input type="hidden" id="editor-meta" class="editor-meta" name="meta[editor-meta]" value="W3siaWQiOiJjNjY0ZmM2YS00MTdhLWViOWItNTRmYy01OTJkNWNiZjM2M2MiLCJ2aXNpYmxlIjp0cnVlLCJiZ19jb2xvciI6IiIsImJnX2ltYWdlIjoiIiwiZnVsbHNpemUiOmZhbHNlLCJtYXJnaW4iOnsiYm90dG9tIjowLCJ0b3AiOjB9LCJwYWRkaW5nIjp7ImJvdHRvbSI6MCwibGVmdCI6MCwicmlnaHQiOjAsInRvcCI6MH0sImNvbHVtbnMiOlt7InR5cGUiOiJlbXB0eSIsInZhbHVlIjoiIiwic2l6ZVNtYWxsIjoiNCIsInNpemVNZWRpdW0iOiI0Iiwic2l6ZUxhcmdlIjoiNCIsImlkIjoiNjFiOTZhZTUtMWYwNC1mYTUyLTlmYjctOGIyMjUyNmFjNmY1Iiwib3JkaW5hbCI6MH0seyJ0eXBlIjoidGV4dCIsInZhbHVlIjoiIiwic2l6ZVNtYWxsIjoiNCIsInNpemVNZWRpdW0iOiI0Iiwic2l6ZUxhcmdlIjoiNCIsImlkIjoiMzk4NmY5ZjMtMmExYy1mZTRkLWMxZWEtYTY5MThhMDIwNzMzIiwib3JkaW5hbCI6MX0seyJ0eXBlIjoiZW1wdHkiLCJ2YWx1ZSI6IiIsInNpemVTbWFsbCI6IjQiLCJzaXplTWVkaXVtIjoiNCIsInNpemVMYXJnZSI6IjQiLCJpZCI6ImUzNzc2Y2Y1LTdiNDEtZDkwMi1lYTFmLThiNDBjNDg3MGVmYSIsIm9yZGluYWwiOjJ9XSwib3JkaW5hbCI6MH0seyJpZCI6ImJjYjhjYTYwLTgyZmUtNGNhYi05ZTUxLTg5MTFkMjk1NDNhYyIsInZpc2libGUiOnRydWUsImJnX2NvbG9yIjoiIiwiYmdfaW1hZ2UiOiIiLCJmdWxsc2l6ZSI6ZmFsc2UsIm1hcmdpbiI6eyJib3R0b20iOjAsInRvcCI6MH0sInBhZGRpbmciOnsiYm90dG9tIjowLCJsZWZ0IjowLCJyaWdodCI6MCwidG9wIjowfSwiY29sdW1ucyI6W3sidHlwZSI6InRleHQiLCJ2YWx1ZSI6IiIsInNpemVTbWFsbCI6IjQiLCJzaXplTWVkaXVtIjoiNCIsInNpemVMYXJnZSI6IjQiLCJpZCI6IjM5ODZmOWYzLTJhMWMtZmU0ZC1jMWVhLWE2OTE4YTAyMDczMyIsIm9yZGluYWwiOjF9LHsidHlwZSI6ImVtcHR5IiwidmFsdWUiOiIiLCJzaXplU21hbGwiOiI0Iiwic2l6ZU1lZGl1bSI6IjQiLCJzaXplTGFyZ2UiOiI0IiwiaWQiOiJlMzc3NmNmNS03YjQxLWQ5MDItZWExZi04YjQwYzQ4NzBlZmEiLCJvcmRpbmFsIjoyfV0sIm9yZGluYWwiOjF9LHsiaWQiOiIyZjU1Yzc5NC1iODQ2LTc0MmItMjRhYy1iOTkwNDljOWU3ZTYiLCJ2aXNpYmxlIjp0cnVlLCJiZ19jb2xvciI6IiIsImJnX2ltYWdlIjoiIiwiZnVsbHNpemUiOmZhbHNlLCJtYXJnaW4iOnsiYm90dG9tIjowLCJ0b3AiOjB9LCJwYWRkaW5nIjp7ImJvdHRvbSI6MCwibGVmdCI6MCwicmlnaHQiOjAsInRvcCI6MH0sImNvbHVtbnMiOlt7InR5cGUiOiJ0ZXh0IiwidmFsdWUiOiIiLCJzaXplU21hbGwiOiI0Iiwic2l6ZU1lZGl1bSI6IjQiLCJzaXplTGFyZ2UiOiI0IiwiaWQiOiI0YTkxYTY3My0wYjVkLTQ3YTYtMzMxMS0yNDZiODdjOGY0ZWYifV0sIm9yZGluYWwiOjJ9LHsiaWQiOiI5NzE4MjY0Zi05NzEwLWI3YmUtN2IxYy05Y2Q3MzBjYWFlNDUiLCJ2aXNpYmxlIjp0cnVlLCJiZ19jb2xvciI6IiIsImJnX2ltYWdlIjoiIiwiZnVsbHNpemUiOmZhbHNlLCJtYXJnaW4iOnsiYm90dG9tIjowLCJ0b3AiOjB9LCJwYWRkaW5nIjp7ImJvdHRvbSI6MCwibGVmdCI6MCwicmlnaHQiOjAsInRvcCI6MH0sImNvbHVtbnMiOlt7InR5cGUiOiJ0ZXh0IiwidmFsdWUiOiIiLCJzaXplU21hbGwiOiI0Iiwic2l6ZU1lZGl1bSI6IjQiLCJzaXplTGFyZ2UiOiI0IiwiaWQiOiIzOGJmYTlmNi1iMDA4LTFhNmItZTBhMC04M2ZkNmM3ZTMyOGIifSx7InR5cGUiOiJ0ZXh0IiwidmFsdWUiOiIiLCJzaXplU21hbGwiOiI0Iiwic2l6ZU1lZGl1bSI6IjQiLCJzaXplTGFyZ2UiOiI0IiwiaWQiOiJkMWViYzUyMi01YTY5LTk3YzAtZDhmNS01MjI0NTgyMmU5YzkifSx7InR5cGUiOiJ0ZXh0IiwidmFsdWUiOiIiLCJzaXplU21hbGwiOiI0Iiwic2l6ZU1lZGl1bSI6IjQiLCJzaXplTGFyZ2UiOiI0IiwiaWQiOiI2Y2JiNTEwYS05OTFiLTk2ZDMtZDVhMy01MWQwZWI2MTJkOTAifV19XQ==">
+        <input type="hidden" id="editor-meta" class="editor-meta" name="meta[editor-meta]" value="W3siaWQiOiJiZDhjZTRlOC00OGMxLTU3ZjQtMTNiZC1mZTIzMDVjMzhhYmYiLCJ2aXNpYmxlIjp0cnVlLCJiZ19jb2xvciI6IiIsImJnX2ltYWdlIjoiIiwiZnVsbHNpemUiOmZhbHNlLCJtYXJnaW4iOnsiYm90dG9tIjowLCJ0b3AiOjB9LCJwYWRkaW5nIjp7ImJvdHRvbSI6MCwibGVmdCI6MCwicmlnaHQiOjAsInRvcCI6MH0sImNvbHVtbnMiOlt7InR5cGUiOiJ0ZXh0IiwidmFsdWUiOiIiLCJzaXplU21hbGwiOiI0Iiwic2l6ZU1lZGl1bSI6IjQiLCJzaXplTGFyZ2UiOiI0IiwiaWQiOiI4Y2ZhZTc2OS1mNTE3LTdmM2MtMWUxMi04NjRjZmYyZTk3ZGYifSx7InR5cGUiOiJ0ZXh0IiwidmFsdWUiOiIiLCJzaXplU21hbGwiOiI0Iiwic2l6ZU1lZGl1bSI6IjQiLCJzaXplTGFyZ2UiOiI0IiwiaWQiOiJhYmE1ZjZkZC0wNDk4LTJhNmQtNGY5NS04NjQ5MzZkOTFjYWEifSx7InR5cGUiOiJ0ZXh0IiwidmFsdWUiOiIiLCJzaXplU21hbGwiOiI0Iiwic2l6ZU1lZGl1bSI6IjQiLCJzaXplTGFyZ2UiOiI0IiwiaWQiOiIxMWI1ZjA5My1mMWEyLWJmNzUtNDFiNC0wNjk2MmIyODczZmUifV19XQ==">
         
         <?php include "templates/editor-content.php" ?>
     
         <?php include "templates/editor-settings.php" ?>
         
         <script>
-            var ajax_editor = {};
-            ajax_editor['some_value'] = <?= $json ?>;
+            var app = {};
+            app.Settings = <?= $json ?>;
         </script>
     </div>
     
@@ -37,6 +37,8 @@ $editor_settings_assoc = json_decode($json, true);
     <script src="bower_components/underscore/underscore.js"></script>
     <script src="bower_components/backbone/backbone.js"></script>
     <script src="bower_components/backbone.localStorage/backbone.localStorage.js"></script>
+    <script src="bower_components/foundation/js/vendor/modernizr.js"></script>
+    <script src="bower_components/foundation/js/foundation.js"></script>
     
     <!-- Data -->
     <script src="js/helpers/base64.js"></script>
@@ -60,6 +62,9 @@ $editor_settings_assoc = json_decode($json, true);
     <!-- Settings -->
     <script src="js/views/settings.js"></script>
     <script src="js/views/settings/settings.text.js"></script>
+    <script src="js/views/settings/settings.video.js"></script>
+    <script src="js/views/settings/settings.type.chooser.js"></script>
+    <script src="js/views/settings/settings.column.size.js"></script>
     
     <!-- router -->
     <script src="js/routes/editor.js"></script>

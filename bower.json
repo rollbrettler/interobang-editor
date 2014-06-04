@@ -16,6 +16,8 @@
   "dependencies": {
     "backbone": "*",
     "jquery-ui": "*",
+    "font-awesome": "*",
+    "foundation": "*",
     "font-awesome": "*"
   },
   "private": true,
