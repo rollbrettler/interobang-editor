@@ -1,0 +1,33 @@
+
+/*
+    Foundation Reset
+*/
+
+
+*, *:before, *:after {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.foundation-reset {
+    *, *:before, *:after {
+        -moz-box-sizing: content-box;
+        -webkit-box-sizing: content-box;
+        box-sizing: content-box;
+    }
+    
+}
+
+button,
+.button {
+    border-radius: 0;
+    padding: 0;
+    height: auto;
+-webkit-box-shadow: none;
+        box-shadow: none;
+}
+
+body {
+    background: transparent;
+}

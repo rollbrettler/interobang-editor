@@ -1,0 +1,21 @@
+{
+  "name": "interobang-editor",
+  "version": "0.0.1",
+  "author": "Tim Petter",
+  "private": true,
+  "devDependencies": {
+    "node-sass": "~0.7.0",
+    "grunt": "~0.4.1",
+    "grunt-contrib-watch": "*",
+    "grunt-sass": "~0.8.0",
+    "grunt-contrib-cssmin": "*",
+    "grunt-contrib-jade": "*",
+    "grunt-contrib-uglify": "*",
+    "grunt-cssc": "*",
+    "grunt-htmlhint": "*",
+    "grunt-contrib-copy": "*",
+    "matchdep": "*",
+    "grunt-uncss": "~0.1.5",
+    "grunt-po2mo": "~0.1.0"
+  }
+}

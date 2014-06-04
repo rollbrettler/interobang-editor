@@ -1,0 +1,143 @@
+&.editor {
+    /* start elements css */
+    .tabs dd.active a {
+        color: #fff;
+        background-color: $emerland;
+    }
+    button,
+    .button {
+        background-color: $belize-hole;
+        padding-bottom: $tabs-navigation-padding;
+        padding-top: $tabs-navigation-padding;
+    }
+    /* end elements css */
+    /* start content css */
+    .editor-row {
+        border: 2px dashed $wp-bg-grey;
+        margin-bottom: 20px;
+        min-height: 153px;
+        padding: 15px 15px;
+        position: relative;
+        &:hover > .editor-controls {
+            display: block;
+        }
+    }
+    .editor-inner-column {
+        background-color: $wp-bg-grey;
+        padding: 15px 5px;
+        position: relative;
+        a {
+            display: block;
+        }
+        .editor-content-icon {
+            color: #fff;
+            font-size: 85px;
+        }
+        &:hover > .editor-controls {
+            display: block;
+        }
+        &.editor-empty-column {
+            background-color: #fff;
+            border: 2px dashed $wp-bg-grey;
+            .editor-content-icon {
+                color: $wp-bg-grey;
+            }
+            .editor-drag {
+                display: none;
+            }
+        }
+        .editor-drag {
+            left: auto;
+            right: 10px;
+            top: 10px;
+            .fa {
+                color: #fff;
+            }
+        }
+    }
+    .editor-drag,
+    .editor-controls,
+    .editor-row-settings {
+        position: absolute;
+        .fa {
+            color: $wp-bg-grey;
+        }
+    }
+    .editor-drag {
+        left: 7px;
+        top: 1px;
+        a {
+            cursor: move;
+        }
+    }
+    .editor-controls {
+        display: none;
+        top: -20px;
+        right: 0;
+        .editor-edit, .editor-delete, .editor-add {
+            float: left;
+            padding: 1px 4px;
+        }
+        .editor-edit {
+            background-color: $emerland;
+        }
+        .editor-delete {
+            background-color: $alizarin;
+        }
+        .editor-add {
+            background-color: $sun-flower;
+        }
+        .fa {
+            color: #fff;
+        }
+    }
+    .editor-row-settings {
+        right: 4px;
+        width: 16px;
+        .fa {
+            border-bottom: 0;
+            margin-bottom: 5px;
+        }
+    }
+    /* end content css */
+    /* start settings css */
+    .editor-chooser {
+        color: $wp-txt-grey;
+        .columns {
+            margin-bottom: 20px;
+        }
+        [class*="column"]+[class*="column"]:last-child {
+            float: left;
+        }
+    }
+    .editor-chooser-icon {
+        font-size: 30px;
+        margin-left: 5px;
+        margin-top: 10px;
+    }
+    .editor-chooser-description {
+        font-size: 14px;
+        max-width: 50%;
+        margin-bottom: 0;
+    }
+    /* end settings css */
+    
+    .ui-slider-horizontal {
+        @include progress-container;
+        @include radius(0);
+        & > .ui-slider-range {
+            @include progress-meter(pink);
+            @include radius(5px);
+        }
+        
+        & > .ui-slider-handle {
+            width: 10px;
+            height: 10px;
+            z-index: 99999;
+            position: absolute;
+            bottom: 0px;
+            margin-left: -10px;
+            background-color: green;
+        }
+    }
+}

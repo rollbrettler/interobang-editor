@@ -1,0 +1,31 @@
+@import "var";
+
+h1, h2, h3, h4, h5, h6 {
+    color: $green-sea;
+    margin-bottom: $headline-margin;
+    margin-top: $headline-margin;
+}
+
+.center {
+    text-align: center;
+}
+
+.slider-overlay {
+    position: absolute;
+    width: 100%;
+    top: 20%;
+    z-index: 9999;
+}
+
+p:empty {
+    display: none;
+}
+
+.logo {
+    max-height: $topbar-height;
+}
+
+.alignright {
+    float: right;
+    margin-left: 20px;
+}
