@@ -81,6 +81,8 @@ app.RowView = app.modulesView.extend({
         
         this.columnElement.append($column);
         
+        columnView.trigger("render");
+        
         this.model.set('columns', this.collection.toJSON());
     },
     

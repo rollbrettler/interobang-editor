@@ -48,7 +48,7 @@ app.ColumnView = app.modulesView.extend({
     },
 
     render: function () {
-
+        
         if (typeof this.model.get('type') === "string") {
             var type = _.findWhere(app.Settings.types, {
                 'name': this.model.get('type')
@@ -67,7 +67,9 @@ app.ColumnView = app.modulesView.extend({
         templateData.id = this.model.cid;
 
         this.$el.html(this.template(templateData));
-
+        
+        this.trigger("render");
+        
         return this;
     },
 
@@ -84,23 +86,36 @@ app.ColumnView = app.modulesView.extend({
     editColumn: function (e) {
 
         e.preventDefault();
-
+        
+        // trigger event to hide content div
         app.EditorContentView.trigger("edit-content");
-
+        
+        // create settings view
         this.editView = new app.SettingsView({
-            model: this.model
+            model: this.model,
+            parent: this
         });
-
+        
+        // render it and append it to settings div
         jQuery('.editor-settings').html(this.editView.renderColumnSettings().el);
-
-        this.editView.on("save-settings", this.saveColumnSettings);
+        
+        // trigger edit view to render settings
+        this.editView.trigger('changeType:' + this.model.get('type'));
+        
+        // listen on save
+        this.on("save-content", this.saveColumnSettings);
         
         jQuery(document).foundation();
         
     },
 
     saveColumnSettings: function () {
+        
+        this.model.set(this.editView.model.toJSON());
+        
+        // remove the edit view
         this.editView.remove();
+        
         //console.log(this.editView);
     }
 

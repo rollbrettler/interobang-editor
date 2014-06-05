@@ -10,6 +10,12 @@
         padding-bottom: $tabs-navigation-padding;
         padding-top: $tabs-navigation-padding;
     }
+    .tabs-content {
+        .content {
+            clear: both;
+        }
+    }
+    
     /* end elements css */
     /* start content css */
     .editor-row {
@@ -103,12 +109,23 @@
     /* start settings css */
     .editor-chooser {
         color: $wp-txt-grey;
+        
         .columns {
             margin-bottom: 20px;
         }
         [class*="column"]+[class*="column"]:last-child {
             float: left;
         }
+        
+        .editor-content-chooser {
+            cursor: pointer;
+        }
+        
+        .editor-content-chooser-active {
+            background-color: $emerland;
+            color: #fff;
+        }
+        
     }
     .editor-chooser-icon {
         font-size: 30px;
@@ -119,6 +136,7 @@
         font-size: 14px;
         max-width: 50%;
         margin-bottom: 0;
+        text-align: left;
     }
     /* end settings css */
     

@@ -10,19 +10,21 @@ _.extend(app.ColumnViewModules.events, {
     'drop': 'drop'
 });
 
-app.ColumnViewModules.functions.push("bind_drag");
-
-app.ColumnViewModules.draggable
+app.ColumnViewModules.functions.push("bindDragUi");
 
 app.ColumnViewModules.draggable = {
 
     drop: function (event, index) {
         this.$el.trigger('update-sort-column', [this.model, index]);
     },
+    
+    bindDragEvent: function(){
+        this.on("render", this.bindDragUi)
+    },
 
-    bind_drag: function () {
+    bindDragUi: function () {
         
-        jQuery(".editor-row").sortable({
+        jQuery(".column-container").sortable({
             cursor: "move",
             handle: ".editor-drag",
             items: ".columns",

@@ -1,6 +1,7 @@
 <?php global $editor_settings; global $editor_text;  ?>
 <div class="editor-settings" style="display: none;">
 </div>
+
 <script id="settingsTemplate" type="text/template">
     <dl class="tabs left" data-tab>
         <dd>
@@ -27,17 +28,28 @@
         </div>
     </div>
 </script>
+
 <script id="typesTemplate" type="text/template">
-    <div class="editor-inner-column editor-content-chooser clearfix">
-        <i class="<%= icon_css %> editor-chooser-icon left"></i>
+    <div class="editor-inner-column editor-content-chooser <%= active %> clearfix">
+        <i class="<%= type.icon_css %> editor-chooser-icon left"></i>
         <p class="editor-chooser-description right ">Test</p>
     </div>
 </script>
+
 <script id="sizeTemplate" type="text/template">
     <h3>Size <%= size.name %></h3>
     <div class="row">
         <% for (var i = 0; i < app.Settings.css_selector.columns; i++ ) {  %>
             <div class="<%= selector %>"><%= i + 1 %>/12</div>
         <% }; %>
+    </div>
+</script>
+
+<script id="textEditTemplate" type="text/template">
+    <h3>Edit Text</h3>
+    <div class="row">
+        <div class="columns">
+            <textarea name="" id="" cols="30" rows="10"><%= content.value %></textarea>
+        </div>
     </div>
 </script>

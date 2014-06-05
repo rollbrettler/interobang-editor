@@ -14,7 +14,8 @@ $editor_settings_assoc = json_decode($json, true);
 <head>
     <meta charset="UTF-8">
     <title>Editor Test</title>
-    <link rel="stylesheet" href="css/backend.css">
+    <link rel="stylesheet" href="bower_components/foundation/css/foundation.css">
+    <link rel="stylesheet" href="css/editor.css">
 </head>
 
 <body>

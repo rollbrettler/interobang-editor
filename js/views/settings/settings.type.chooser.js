@@ -16,14 +16,30 @@ app.ChooserView = Backbone.View.extend({
         //console.log(this.type);
         
         var tmpl = _.template(this.template);
-
-        jQuery(this.el).html(tmpl(this.type));
+        
+        var active = "";
+        
+        //console.log(this.type.name,this.parent.model.get("type"));
+        
+        if(this.type.name === this.parent.model.get("type")) {
+            active = "editor-content-chooser-active";
+        }
+        
+        var templateData = {
+            type: this.type,
+            active: active
+        };
+        
+        jQuery(this.el).html(tmpl(templateData));
 
         return this;
     },
     
     changeType: function () {
         this.parent.trigger("changeType", this.type.name);
+        
+        this.$el.find(".editor-content-chooser").addClass("editor-content-chooser-active");
+        
         this.parent.trigger("changeType:" + this.type.name);
     }
     

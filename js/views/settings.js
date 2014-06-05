@@ -18,16 +18,20 @@ app.SettingsView = app.modulesView.extend({
         //this. = options.;
 
         this.types = [];
-
+        
+        this.parent = options.parent;
+        
         // add modules
         this.setModulesObject(app.SettingsViewModules);
-
+        
     },
 
     types: [],
 
     subViews: [],
-
+    
+    settingsContentView: {},
+    
     events: {
         'click .save-settings': 'saveSettings'
     },
@@ -44,9 +48,11 @@ app.SettingsView = app.modulesView.extend({
 
         jQuery(this.el).html(tmpl(templateData));
 
-
+        this.settingsContent = this.$el.find('#content');
+        this.settingsElement = this.$el.find('#settings');
+        
         // render editor type chooser
-        var editorChooser = this.$el.find(".editor-chooser");
+        this.editorChooser = this.$el.find(".editor-chooser");
 
         var that = this;
 
@@ -58,7 +64,7 @@ app.SettingsView = app.modulesView.extend({
                     parent: that
                 }));
 
-                editorChooser.append(that.subViews[count - 1].render().el);
+                that.editorChooser.append(that.subViews[count - 1].render().el);
 
             });
         }
@@ -66,7 +72,6 @@ app.SettingsView = app.modulesView.extend({
         this.on("changeType", this.setType);
 
         // render size chooser
-
         _.each(app.Settings.css_selector.sizes, function (size) {
             if (size.css) {
 
@@ -75,7 +80,7 @@ app.SettingsView = app.modulesView.extend({
                     model: that.model
                 });
                 
-                that.$el.find('#settings').append(sizeView.render().el);
+                that.settingsElement.append(sizeView.render().el);
                 
                 that.subViews.push(sizeView);
             }
@@ -87,7 +92,11 @@ app.SettingsView = app.modulesView.extend({
     saveSettings: function () {
 
         app.EditorContentView.trigger("save-content");
-
+        
+        this.trigger("save-content:" + this.model.get("type"));
+        
+        this.parent.trigger("save-content");
+        
         //console.log(this.typesViews);
         
         // remove all subviews
@@ -99,6 +108,12 @@ app.SettingsView = app.modulesView.extend({
     },
 
     setType: function (type) {
+        this.settingsContent.empty();
+        
+        _.each(this.editorChooser.find(".editor-content-chooser"), function(chooser) {
+            jQuery(chooser).removeClass("editor-content-chooser-active");
+        });
+        
         this.model.set("type", type);
     }
 });

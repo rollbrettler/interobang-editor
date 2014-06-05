@@ -5,8 +5,7 @@ app.SizeView = Backbone.View.extend({
     template: jQuery("#sizeTemplate").html(),
 
     events: {
-        "click .editor-content-chooser": "changeSize",
-        "slide": "changeSize"
+        "click .editor-content-chooser": "changeSize"
     },
 
     initialize: function (options) {
