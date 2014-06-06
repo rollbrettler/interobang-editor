@@ -34,8 +34,10 @@ app.ColumnView = app.modulesView.extend({
 
     template: _.template($('#columnTemplate').html()),
 
-    initialize: function () {
+    initialize: function (options) {
 
+        this.row = options.row;
+        
         this.setModulesObject(app.ColumnViewModules);
 
         //this.listenTo(this.model, 'change', this.render);

@@ -54,7 +54,7 @@ app.SettingsViewModules.text = {
     },
     
     saveText: function() {
-        console.log(this.settingsContent.find("textarea"));
+        //console.log(this.settingsContent.find("textarea"));
         this.model.set("value", this.settingsContent.find("textarea").val());
     }
 }

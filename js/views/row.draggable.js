@@ -23,7 +23,7 @@ app.RowViewModules.draggable = {
         // sortable settings
         jQuery(".editor-rows").sortable({
             cursor: "move",
-            handle: ".editor-drag",
+            handle: ".editor-drag:not(.column-container .editor-drag)",
             items: ".editor-row:not(.editor-add-column)",
             placeholder: "editor-row row",
             revert: true,
@@ -43,7 +43,7 @@ app.RowViewModules.draggable = {
 
         this.collection.remove(model);
         
-        console.log("updateSortColumn", model);
+        // console.log("updateSortColumn", model);
         
         this.collection.each(function (model, index) {
             var ordinal = index;

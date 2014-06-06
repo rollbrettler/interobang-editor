@@ -57,7 +57,7 @@ app.RowView = app.modulesView.extend({
         var templateData = this.model.toJSON();
         
         //templateData.id = this.model.cid;
-        
+        console.log(this.$el);
         this.$el.html(this.template(templateData));
         
         this.columnElement = this.$('.column-container');
@@ -65,6 +65,8 @@ app.RowView = app.modulesView.extend({
         _.each(this.collection.models, function (column) {
             that.renderColumn(column);
         });
+        
+        //this.trigger("render");
         
         return this;
     },
@@ -74,14 +76,13 @@ app.RowView = app.modulesView.extend({
         // console.info("renderColumn",column);
         
         var columnView = new app.ColumnView({
-            model: column
+            model: column,
+            row: this
         });
         
         var $column = columnView.render().el;
         
         this.columnElement.append($column);
-        
-        columnView.trigger("render");
         
         this.model.set('columns', this.collection.toJSON());
     },

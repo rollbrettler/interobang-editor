@@ -10,7 +10,7 @@ _.extend(app.ColumnViewModules.events, {
     'drop': 'drop'
 });
 
-app.ColumnViewModules.functions.push("bindDragUi");
+app.ColumnViewModules.functions.push("bindDragEvent");
 
 app.ColumnViewModules.draggable = {
 
@@ -19,11 +19,10 @@ app.ColumnViewModules.draggable = {
     },
     
     bindDragEvent: function(){
-        this.on("render", this.bindDragUi)
+        this.row.on("render", this.bindDragUi);
     },
 
     bindDragUi: function () {
-        
         jQuery(".column-container").sortable({
             cursor: "move",
             handle: ".editor-drag",

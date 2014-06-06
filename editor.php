@@ -14,12 +14,12 @@ $editor_settings_assoc = json_decode($json, true);
 <head>
     <meta charset="UTF-8">
     <title>Editor Test</title>
-    <link rel="stylesheet" href="bower_components/foundation/css/foundation.css">
+    <!--link rel="stylesheet" href="bower_components/foundation/css/foundation.css"-->
     <link rel="stylesheet" href="css/editor.css">
 </head>
 
 <body>
-    <div style="width: 840px;margin: auto;" id="editorApp" class="foundation-init editor">
+    <div style="width: 840px;margin: auto;padding-top:30px" id="editorApp" class="foundation-init editor">
         <input type="hidden" id="editor-meta" class="editor-meta" name="meta[editor-meta]" value="">
         
         <?php include "templates/editor-content.php" ?>

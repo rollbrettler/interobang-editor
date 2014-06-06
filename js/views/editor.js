@@ -75,6 +75,8 @@ app.EditorView = app.modulesView.extend({
         
         this.editorRows.append($row);
         
+        rowView.trigger("render");
+        
     },
     
     addRow: function(e) {
