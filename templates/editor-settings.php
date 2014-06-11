@@ -47,9 +47,6 @@
 
 <script id="textEditTemplate" type="text/template">
     <h3>Edit Text</h3>
-    <div class="row">
-        <div class="columns">
-            <textarea name="" id="" cols="30" rows="10"><%= content.value %></textarea>
-        </div>
-    </div>
+    <!--textarea name="" id="" cols="30" rows="10"><%= content.value %></textarea-->
+    <iframe id="textEditIframe" src="<%=url%>?timestamp=<%= new Date().getTime() %>" frameborder="0"></iframe>
 </script>

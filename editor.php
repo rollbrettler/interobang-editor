@@ -7,7 +7,7 @@ global $editor_settings_assoc, $editor_settings;
 $json = utf8_encode(file_get_contents($url));
 $editor_settings = json_decode($json);
 $editor_settings_assoc = json_decode($json, true);
-  
+
 ?><!doctype html>
 <html lang="en">
 
@@ -47,6 +47,7 @@ $editor_settings_assoc = json_decode($json, true);
     <!-- Helper -->
     <script src="js/helpers/guid.js"></script>
     <script src="js/helpers/modules.js"></script>
+    <script src="js/helpers/tinymce.ready.js"></script>
     
     <!-- Columns -->
     <script src="js/models/column.js"></script>
@@ -72,7 +73,9 @@ $editor_settings_assoc = json_decode($json, true);
     
     <!-- main script -->
     <script src="js/views/editor.js"></script>
-    <script src="js/views/editor.draggable.js"></script>
+    <script src="js/views/editor/editor.get.data.js"></script>
+    <script src="js/views/editor/editor.save.js"></script>
+    <script src="js/views/editor/editor.draggable.js"></script>
     <script src="js/interobang-editor.js"></script>
 </body>
 

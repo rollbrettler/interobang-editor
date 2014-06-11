@@ -19,6 +19,7 @@ app.ColumnViewModules.draggable = {
     },
     
     bindDragEvent: function(){
+        //this.row.on("render", this.unbindDragUi);
         this.row.on("render", this.bindDragUi);
     },
 
@@ -38,7 +39,8 @@ app.ColumnViewModules.draggable = {
         
     },
 
-    unbind_drag: function () {
-        jQuery(".editor-row").sortable("destroy");
+    unbindDragUi: function () {
+        this.row.off("render");
+        jQuery(".column-container").sortable("destroy");
     }
 };

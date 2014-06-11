@@ -61,8 +61,10 @@ app.RowViewModules.draggable = {
         // to update ordinals on server:
         var ids = this.collection.pluck('id');
 
-        console.log('post ids to server: ' + ids.join(', '));
+        //console.log('post ids to server: ' + ids.join(', '));
 
+        console.log(this.collection.toJSON());
+        
         this.render();
     }
 };

@@ -29,6 +29,7 @@ app.SettingsViewModules.text = {
 
     renderText: function () {
         
+        // 
         if (typeof this.settingsContentView.remove === "function") {
             console.log(this.settingsContentView)
             this.settingsContentView.remove();
@@ -36,6 +37,7 @@ app.SettingsViewModules.text = {
         
         var text = this;
         
+        // render text settings view
         this.settingsContentView = Backbone.View.extend({
             tagName: "div",
             className: "edit-text",
@@ -43,18 +45,52 @@ app.SettingsViewModules.text = {
             
             render: function() {
                 
-                this.$el.html(this.template({content: text.model.toJSON()}));
+                this.$el.html(this.template({
+                        content: text.model.toJSON(),
+                        url: "http://localhost:8888/wordpress/wp-content/plugins/interobang-editor/templates/wp-editor.php"
+                    })
+                );
                 
                 return this;
             }
         });
         
-        this.settingsContent.append(new this.settingsContentView().render().el);
+        this.settingsTextView = new this.settingsContentView();
+        this.settingsContent.append(this.settingsTextView.render().el);
+        
+        // get iframe
+        this.textIframe = document.getElementById('textEditIframe');
+        
+        // debug
+        // console.log(document.getElementById('textEditIframe'));
+        
+        // add enentlisteners if tinymce is ready
+        app.EditorContentView.on("tinymceReady",this.setIframeHeight, this);
+        app.EditorContentView.on("tinymceReady",this.setIframeContent, this);
         
     },
     
     saveText: function() {
-        //console.log(this.settingsContent.find("textarea"));
-        this.model.set("value", this.settingsContent.find("textarea").val());
+        
+        // save data
+        this.model.set("value", this.textIframe.contentWindow.tinymce.activeEditor.getContent());
+        
+        // destroy settings view and remove listener
+        app.EditorContentView.off("tinymceReady");
+        this.settingsTextView.remove();
+        
+        // remove iframe reference
+        this.textIframe = "";
+    },
+    
+    setIframeContent: function() {
+        // set tinymce content in iframe
+        this.textIframe.contentWindow.tinymce.activeEditor.setContent(this.model.get("value"));
+    },
+    
+    setIframeHeight: function() {
+        // the iframe height based on content height
+        console.log(this.textIframe.contentWindow.document.body.scrollHeight);
+        this.textIframe.height = this.textIframe.contentWindow.document.getElementById('wp-interobang_editor-wrap').offsetHeight;
     }
 }

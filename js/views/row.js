@@ -57,7 +57,7 @@ app.RowView = app.modulesView.extend({
         var templateData = this.model.toJSON();
         
         //templateData.id = this.model.cid;
-        console.log(this.$el);
+        // console.log(templateData);
         this.$el.html(this.template(templateData));
         
         this.columnElement = this.$('.column-container');
@@ -66,7 +66,7 @@ app.RowView = app.modulesView.extend({
             that.renderColumn(column);
         });
         
-        //this.trigger("render");
+        this.trigger("render");
         
         return this;
     },

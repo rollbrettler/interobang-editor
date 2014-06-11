@@ -22,16 +22,8 @@ app.EditorView = app.modulesView.extend({
         this.editorContent = this.$('.editor-content');
         this.editorRows = this.$('.editor-rows');
         this.editorAddRow = this.$('.editor-row-add');
-        this.metaData = jQuery('#editor-meta');
         
         this.editorSettings = this.$('.editor-settings');
-        
-        // get Collection data and set it
-        this.getCollection();
-        
-        this.collection = new app.RowsCollection(app.Data || {});
-        
-        this.listenTo(this.collection, "all", this.saveCollection);
         
         this.listenTo(this.collection, "add", this.renderRow);
         this.listenTo(this.collection, "remove", this.removeRow);
@@ -108,34 +100,15 @@ app.EditorView = app.modulesView.extend({
         row.destroy();
     },
     
-    saveCollection: function(e) {
-        this.metaData.val(
-            Base64.encode(
-                JSON.stringify(
-                    this.collection.toJSON()
-                )
-            )
-        );
-        console.log(this.collection.toJSON());
-    },
-    
-    getCollection: function() {
-        if(this.metaData.val().length) {
-            app.Data = jQuery.parseJSON(
-                Base64.decode(
-                    this.metaData.val()
-                )
-            );
-        }
-    },
-    
     editContent: function(){
         this.editorContent.hide();
         this.editorSettings.show();
     },
     
+    /*
+    * after save content hide settings and show content
+    */ 
     saveContent: function() {
-        this.saveCollection();
         this.editorContent.show();
         this.editorSettings.hide();
     }

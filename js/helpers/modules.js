@@ -32,6 +32,7 @@ app.modulesView = Backbone.View.extend({
         var view = this;
         
         _.each(this.modulesObject.functions, function (_function) {
+            // console.log(view[_function]);
             view[_function]();
         });
     },
