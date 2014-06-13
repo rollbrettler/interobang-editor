@@ -19,6 +19,8 @@ app.RowView = app.modulesView.extend({
         "click .remove-row": "deleteRow",
         "click .editor-add": "addColumn"
     },
+    
+    columnViews: [],
 
     initialize: function () {
         
@@ -73,17 +75,24 @@ app.RowView = app.modulesView.extend({
 
     renderColumn: function (column) {
         
+        // debug
         // console.info("renderColumn",column);
         
+        // create single column view
         var columnView = new app.ColumnView({
             model: column,
             row: this
         });
         
-        var $column = columnView.render().el;
+        // append that view to the view array
+        var columnCount = this.columnViews.push(columnView);
+        
+        // render the element
+        var $column = this.columnViews[columnCount - 1].render().el;
         
         this.columnElement.append($column);
         
+        // save collection back to row model 
         this.model.set('columns', this.collection.toJSON());
     },
     
@@ -112,6 +121,11 @@ app.RowView = app.modulesView.extend({
     deleteRow: function (e) {
 
         e.preventDefault();
+        
+        // remove all column views
+        _.each(this.columnViews, function(columnView){
+            columnView.remove();
+        });
         
         this.model.destroy();
         

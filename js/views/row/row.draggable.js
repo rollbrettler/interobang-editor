@@ -6,7 +6,7 @@ var app = app || {};
 // ----------
 // 
 _.extend(app.RowViewModules.events, {
-    'drop': 'drop',
+    'drop-row': 'drop',
     'update-sort-column': 'updateSortColumn'
 });
 
@@ -28,8 +28,8 @@ app.RowViewModules.draggable = {
             placeholder: "editor-row row",
             revert: true,
             stop: function (event, ui) {
-                ui.item.trigger('drop', ui.item.index());
-                console.log(ui.item.index());
+                ui.item.trigger('drop-row', ui.item.index());
+                // console.log(ui.item.index());
             }
         });
         
@@ -40,7 +40,11 @@ app.RowViewModules.draggable = {
     },
 
     updateSortColumn: function (event, model, position) {
-
+        
+        _.each(this.columnViews, function(columnView){
+            columnView.unbindDragUi();
+        });
+        
         this.collection.remove(model);
         
         // console.log("updateSortColumn", model);
@@ -60,10 +64,10 @@ app.RowViewModules.draggable = {
         
         // to update ordinals on server:
         var ids = this.collection.pluck('id');
-
-        //console.log('post ids to server: ' + ids.join(', '));
-
-        console.log(this.collection.toJSON());
+        
+        // #debug
+        // console.log('post ids to server: ' + ids.join(', '));
+        // console.log(this.collection.toJSON());
         
         this.render();
     }

@@ -53,20 +53,21 @@ $editor_settings_assoc = json_decode($json, true);
     <script src="js/models/column.js"></script>
     <script src="js/collections/columns.js"></script>
     <script src="js/views/column.js"></script>
-    <script src="js/views/column.draggable.js"></script>
+    <script src="js/views/column/column.draggable.js"></script>
     
     <!-- Row -->
     <script src="js/models/row.js"></script>
     <script src="js/collections/rows.js"></script>
     <script src="js/views/row.js"></script>
-    <script src="js/views/row.draggable.js"></script>
+    <script src="js/views/row/row.draggable.js"></script>
     
     <!-- Settings -->
     <script src="js/views/settings.js"></script>
-    <script src="js/views/settings/settings.text.js"></script>
-    <script src="js/views/settings/settings.video.js"></script>
     <script src="js/views/settings/settings.type.chooser.js"></script>
     <script src="js/views/settings/settings.column.size.js"></script>
+    <!-- Setting types -->
+    <script src="js/views/settings/settings.text.js"></script>
+    <script src="js/views/settings/settings.video.js"></script>
     
     <!-- router -->
     <script src="js/routes/editor.js"></script>

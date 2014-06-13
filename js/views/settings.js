@@ -77,7 +77,8 @@ app.SettingsView = app.modulesView.extend({
 
                 var sizeView = new app.SizeView({
                     size: size,
-                    model: that.model
+                    //model: that.model,
+                    parent: that
                 });
                 
                 that.settingsElement.append(sizeView.render().el);
@@ -85,6 +86,8 @@ app.SettingsView = app.modulesView.extend({
                 that.subViews.push(sizeView);
             }
         });
+        
+        this.on("changeSize", this.setSize, this);
 
         return this;
     },
@@ -108,6 +111,7 @@ app.SettingsView = app.modulesView.extend({
     },
 
     setType: function (type) {
+        
         this.settingsContent.empty();
         
         _.each(this.editorChooser.find(".editor-content-chooser"), function(chooser) {
@@ -115,5 +119,11 @@ app.SettingsView = app.modulesView.extend({
         });
         
         this.model.set("type", type);
+    },
+    
+    setSize: function(slug, size) {
+        
+        this.model.set(slug, size);
+        
     }
 });

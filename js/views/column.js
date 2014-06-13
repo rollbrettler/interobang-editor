@@ -13,7 +13,7 @@ app.ColumnViewModules.functions = [];
 app.ColumnView = app.modulesView.extend({
 
     tagName: "div",
-    className: function () {
+    getClassName: function () {
         var className = app.Settings.css_selector.main;
         
         var that = this;
@@ -43,7 +43,8 @@ app.ColumnView = app.modulesView.extend({
         //this.listenTo(this.model, 'change', this.render);
 
         this.model.on('change', this.render, this);
-        this.model.on('remove', this.render, this);
+        this.model.on('reset', this.render, this);
+        //this.model.on('remove', this.render, this);
         this.model.on('add', this.render, this);
 
         this.render();
@@ -51,25 +52,34 @@ app.ColumnView = app.modulesView.extend({
 
     render: function () {
         
+        // check if type of the model is a string
         if (typeof this.model.get('type') === "string") {
+            // get template settings by type
             var type = _.findWhere(app.Settings.types, {
                 'name': this.model.get('type')
             });
             
+            // if type is undefined, then set type settings from empty
             if (typeof type === "undefined") {
                 type = _.findWhere(app.Settings.types, {
                     'name': 'empty'
                 });
             }
         }
-
+        
+        // set template data
         var templateData = this.model.toJSON();
 
         templateData.type = type;
         templateData.id = this.model.cid;
 
+        // render template
         this.$el.html(this.template(templateData));
         
+        this.$el.removeClass();
+        this.$el.addClass(this.getClassName());
+        
+        // trigger render event
         this.trigger("render");
         
         return this;
@@ -79,10 +89,10 @@ app.ColumnView = app.modulesView.extend({
 
         e.preventDefault();
 
+        // destroy the model and remove the view
         this.model.destroy();
-
         this.remove();
-
+        
     },
 
     editColumn: function (e) {
@@ -105,7 +115,7 @@ app.ColumnView = app.modulesView.extend({
         this.editView.trigger('changeType:' + this.model.get('type'));
         
         // listen on save
-        this.on("save-content", this.saveColumnSettings);
+        this.on("save-content", this.saveColumnSettings, this);
         
         jQuery(document).foundation();
         
@@ -113,12 +123,14 @@ app.ColumnView = app.modulesView.extend({
 
     saveColumnSettings: function () {
         
-        this.model.set(this.editView.model.toJSON());
+        // get the settings from edit view model and save it
+        //this.model.set(this.editView.model.toJSON());
         
         // remove the edit view
         this.editView.remove();
         
-        //console.log(this.editView);
+        // debug
+        // console.log(this.model.attributes);
     }
 
 });

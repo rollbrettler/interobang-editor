@@ -7,7 +7,7 @@ var app = app || {};
 // 
 
 _.extend(app.ColumnViewModules.events, {
-    'drop': 'drop'
+    'drop-column': 'drop'
 });
 
 app.ColumnViewModules.functions.push("bindDragEvent");
@@ -15,6 +15,7 @@ app.ColumnViewModules.functions.push("bindDragEvent");
 app.ColumnViewModules.draggable = {
 
     drop: function (event, index) {
+        this.unbindDragUi();
         this.$el.trigger('update-sort-column', [this.model, index]);
     },
     
@@ -32,8 +33,7 @@ app.ColumnViewModules.draggable = {
             revert: true,
             //connectWith: ".editor-row",
             stop: function (event, ui) {
-                ui.item.trigger('drop', ui.item.index());
-                //console.log(ui.item.index());
+                ui.item.trigger('drop-column', ui.item.index());
             }
         });
         
@@ -41,6 +41,6 @@ app.ColumnViewModules.draggable = {
 
     unbindDragUi: function () {
         this.row.off("render");
-        jQuery(".column-container").sortable("destroy");
+        // jQuery(".column-container").sortable("destroy");
     }
 };

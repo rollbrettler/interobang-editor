@@ -5,11 +5,12 @@ app.SizeView = Backbone.View.extend({
     template: jQuery("#sizeTemplate").html(),
 
     events: {
-        "click .editor-content-chooser": "changeSize"
+        "click .size-chooser": "changeSize"
     },
 
     initialize: function (options) {
         this.size = options.size;
+        this.parent = options.parent;
     },
 
     render: function () {
@@ -40,8 +41,9 @@ app.SizeView = Backbone.View.extend({
         return className;
     },
 
-    changeSize: function (event, size, slug) {
-        //console.log(event, size, slug);
-        //this.model.set(slug, size);
+    changeSize: function (event) {
+        
+        this.parent.trigger("changeSize", this.size.slug, event.currentTarget.value);
+        
     }
 });
