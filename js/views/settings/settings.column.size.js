@@ -28,6 +28,9 @@ app.SizeView = Backbone.View.extend({
         
         this.slider = this.$('[data-slider]')
         this.sliderValue = this.slider.attr("data-slider")
+        this.sliderHandle = this.slider.find(".range-slider-handle");
+        
+        this.sliderHandle.html(this.sliderValue);
         
         return this
     },
@@ -39,6 +42,9 @@ app.SizeView = Backbone.View.extend({
             this.sliderValue = jQuery(event.currentTarget).attr("data-slider")
             
             this.parent.trigger("changeSize", this.size.slug, this.sliderValue)
+            
+            this.sliderHandle.empty()
+            this.sliderHandle.html(this.sliderValue)
         }
         
     }

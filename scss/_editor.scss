@@ -145,6 +145,11 @@
             position: absolute;
         }
         
+        .range-slider-handle {
+            text-align: center;
+            line-height: $range-slider-handle-height
+        }
+        
         #textEditIframe {
             width: 100%;
         }
