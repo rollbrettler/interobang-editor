@@ -69,7 +69,7 @@
     </div>
 </script>
 
-<script id="columnTemplate" type="text/template">
+<script id="columnElementTemplate" type="text/template">
     <div class="editor-inner-column text-center">
         <!-- draggable area -->
         <div class="editor-drag">
@@ -93,6 +93,13 @@
                     <i class="fa fa-times"></i>
                 </a>
             </div>
+        </div>
+        
+        <!-- add column -->
+        <div class="editor-add">
+            <a href="#add-column">
+                <i class="fa fa-plus"></i>
+            </a>
         </div>
     </div>
 </script>

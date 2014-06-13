@@ -32,7 +32,7 @@ app.ColumnView = app.modulesView.extend({
         "click .editor-delete": "deleteColumn"
     },
 
-    template: _.template($('#columnTemplate').html()),
+    // template: _.template($('#columnTemplate').html()),
 
     initialize: function (options) {
 
@@ -49,8 +49,27 @@ app.ColumnView = app.modulesView.extend({
 
         this.render();
     },
-
+    
     render: function () {
+        
+        // render template
+        // this.$el.html();
+        
+        this.$el.removeClass();
+        this.$el.addClass(this.getClassName());
+        
+        // render column elements
+        _.each(this.model.get('elements'), function(element){
+            console.log(element)
+        })
+        
+        // trigger render event
+        this.trigger("render");
+        
+        return this;
+    },
+
+    renderElement: function () {
         
         // check if type of the model is a string
         if (typeof this.model.get('type') === "string") {
@@ -72,7 +91,7 @@ app.ColumnView = app.modulesView.extend({
 
         templateData.type = type;
         templateData.id = this.model.cid;
-
+        
         // render template
         this.$el.html(this.template(templateData));
         
