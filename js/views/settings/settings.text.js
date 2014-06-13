@@ -7,7 +7,7 @@ var app = app || {}
 // 
 
 _.extend(app.SettingsViewModules.events, {
-
+    
 })
 
 app.SettingsViewModules.functions.push(["addText"])
@@ -91,6 +91,6 @@ app.SettingsViewModules.text = {
     setIframeHeight: function() {
         // the iframe height based on content height
         console.log(this.textIframe.contentWindow.document.body.scrollHeight)
-        this.textIframe.height = this.textIframe.contentWindow.document.getElementById('wp-interobang_editor-wrap').offsetHeight
+        this.textIframe.height = this.textIframe.contentWindow.document.body.offsetHeight
     }
 }

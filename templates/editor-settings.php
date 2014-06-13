@@ -4,10 +4,10 @@
 
 <script id="settingsTemplate" type="text/template">
     <dl class="tabs left" data-tab>
-        <dd>
+        <dd class="active">
             <a href="#content"><i class="fa fa-file-text"></i> Content</a>
         </dd>
-        <dd class="active">
+        <dd>
             <a href="#settings"><i class="fa fa-cogs"></i> Settings</a>
         </dd>
     </dl>
@@ -18,10 +18,10 @@
     
     <a href="#" class="button right small save-settings"><i class="fa fa-pencil"></i> Save changes</a>
     <div class="tabs-content">
-        <div class="content" id="content">
+        <div class="content active" id="content">
             
         </div>
-        <div class="content active" id="settings">
+        <div class="content" id="settings">
             <div class="row editor-chooser">
                 
             </div>

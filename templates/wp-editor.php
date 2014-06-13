@@ -13,7 +13,9 @@ function initTriggerTinymce($in) {
  $in['setup '] = "function(editor) {
     editor.on('init', function() {
       // trigger parent frame function to proxy an event
-      window.parent.app.tinymceReady();
+      jQuery(document).ready(function(){
+          window.parent.app.tinymceReady()
+      })
       
     });
   }";
