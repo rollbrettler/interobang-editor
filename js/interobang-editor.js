@@ -14,7 +14,7 @@ Backbone.history.start();
 app.EditorContentView = new app.EditorView();
 app.EditorContentView.render();
 
-jQuery(document).foundation();
+//jQuery(document).foundation();
 
 //app.Editor.collection.add({});
 //app.Editor.render();/**/

@@ -77,7 +77,7 @@ app.SettingsView = app.modulesView.extend({
 
                 var sizeView = new app.SizeView({
                     size: size,
-                    //model: that.model,
+                    model: that.model,
                     parent: that
                 });
                 

@@ -140,6 +140,11 @@
     }
     .editor-settings {
         
+        .range-slider-label {
+            bottom: -1.5rem;
+            position: absolute;
+        }
+        
         #textEditIframe {
             width: 100%;
         }

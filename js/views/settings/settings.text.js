@@ -1,6 +1,6 @@
 // js/view/settings/settings.text.js
 
-var app = app || {};
+var app = app || {}
 
 // Editor Draggable Module
 // ----------
@@ -8,9 +8,9 @@ var app = app || {};
 
 _.extend(app.SettingsViewModules.events, {
 
-});
+})
 
-app.SettingsViewModules.functions.push(["addText"]);
+app.SettingsViewModules.functions.push(["addText"])
 
 app.SettingsViewModules.text = {
 
@@ -18,12 +18,12 @@ app.SettingsViewModules.text = {
 
         type = _.findWhere(app.Settings.types, {
             'name': 'text'
-        });
+        })
 
-        this.types.push(type);
+        this.types.push(type)
 
-        this.listenTo(this, 'changeType:text', this.renderText);
-        this.listenTo(this, 'save-content:text', this.saveText);
+        this.listenTo(this, 'changeType:text', this.renderText)
+        this.listenTo(this, 'save-content:text', this.saveText)
 
     },
 
@@ -32,10 +32,10 @@ app.SettingsViewModules.text = {
         // 
         if (typeof this.settingsContentView.remove === "function") {
             console.log(this.settingsContentView)
-            this.settingsContentView.remove();
+            this.settingsContentView.remove()
         }
         
-        var text = this;
+        var text = this
         
         // render text settings view
         this.settingsContentView = Backbone.View.extend({
@@ -49,48 +49,48 @@ app.SettingsViewModules.text = {
                         content: text.model.toJSON(),
                         url: "http://localhost:8888/wordpress/wp-content/plugins/interobang-editor/templates/wp-editor.php"
                     })
-                );
+                )
                 
-                return this;
+                return this
             }
-        });
+        })
         
-        this.settingsTextView = new this.settingsContentView();
-        this.settingsContent.append(this.settingsTextView.render().el);
+        this.settingsTextView = new this.settingsContentView()
+        this.settingsContent.append(this.settingsTextView.render().el)
         
         // get iframe
-        this.textIframe = document.getElementById('textEditIframe');
+        this.textIframe = document.getElementById('textEditIframe')
         
         // debug
-        // console.log(document.getElementById('textEditIframe'));
+        // console.log(document.getElementById('textEditIframe'))
         
         // add enentlisteners if tinymce is ready
-        app.EditorContentView.on("tinymceReady",this.setIframeHeight, this);
-        app.EditorContentView.on("tinymceReady",this.setIframeContent, this);
+        app.EditorContentView.on("tinymceReady",this.setIframeHeight, this)
+        app.EditorContentView.on("tinymceReady",this.setIframeContent, this)
         
     },
     
     saveText: function() {
         
         // save data
-        this.model.set("value", this.textIframe.contentWindow.tinymce.activeEditor.getContent());
+        this.model.set("value", this.textIframe.contentWindow.tinymce.activeEditor.getContent())
         
         // destroy settings view and remove listener
-        app.EditorContentView.off("tinymceReady");
-        this.settingsTextView.remove();
+        app.EditorContentView.off("tinymceReady")
+        this.settingsTextView.remove()
         
         // remove iframe reference
-        this.textIframe = "";
+        this.textIframe = ""
     },
     
     setIframeContent: function() {
         // set tinymce content in iframe
-        this.textIframe.contentWindow.tinymce.activeEditor.setContent(this.model.get("value"));
+        this.textIframe.contentWindow.tinymce.activeEditor.setContent(this.model.get("value"))
     },
     
     setIframeHeight: function() {
         // the iframe height based on content height
-        console.log(this.textIframe.contentWindow.document.body.scrollHeight);
-        this.textIframe.height = this.textIframe.contentWindow.document.getElementById('wp-interobang_editor-wrap').offsetHeight;
+        console.log(this.textIframe.contentWindow.document.body.scrollHeight)
+        this.textIframe.height = this.textIframe.contentWindow.document.getElementById('wp-interobang_editor-wrap').offsetHeight
     }
 }

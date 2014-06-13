@@ -5,45 +5,41 @@ app.SizeView = Backbone.View.extend({
     template: jQuery("#sizeTemplate").html(),
 
     events: {
-        "click .size-chooser": "changeSize"
+        "change [data-slider]": "changeSize"
     },
 
     initialize: function (options) {
-        this.size = options.size;
-        this.parent = options.parent;
+        this.size = options.size
+        this.parent = options.parent
     },
 
     render: function () {
 
-        //console.log(this.type);
+        //console.log(this.type)
 
-        var tmpl = _.template(this.template);
+        var tmpl = _.template(this.template)
 
         jQuery(this.el).html(tmpl({
-            selector: this.setCssSelector(),
-            size: this.size
-        }));
-
-        return this;
-    },
-
-    setCssSelector: function () {
-        var className = app.Settings.css_selector.main;
-
-        var that = this;
-
-        _.each(app.Settings.css_selector.sizes, function (size) {
-            if (size.css) {
-                className += " " + size.css + "1"
-            }
-        });
-
-        return className;
-    },
-
-    changeSize: function (event) {
+            size: this.size,
+            value: this.model.get(this.size.slug)
+        }))
         
-        this.parent.trigger("changeSize", this.size.slug, event.currentTarget.value);
+        //_.bindAll(this, 'changeSize')
+        
+        this.slider = this.$('[data-slider]')
+        this.sliderValue = this.slider.attr("data-slider")
+        
+        return this
+    },
+
+    changeSize: function (event, test) {
+        
+        if(this.sliderValue != jQuery(event.currentTarget).attr("data-slider")){
+
+            this.sliderValue = jQuery(event.currentTarget).attr("data-slider")
+            
+            this.parent.trigger("changeSize", this.size.slug, this.sliderValue)
+        }
         
     }
-});
+})

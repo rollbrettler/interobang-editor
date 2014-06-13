@@ -37,16 +37,19 @@
 </script>
 
 <script id="sizeTemplate" type="text/template">
-    <h3>Size <%= size.name %></h3>
     <div class="row">
-        <% for (var i = 0; i < app.Settings.css_selector.columns; i++ ) {  %>
-            <div class="<%= selector %>"><input class="size-chooser" type="radio" name="<%=size.slug%>" value="<%=i + 1%>"><%= i + 1 %>/12</div>
-        <% }; %>
+        <div class="columns large-12">
+            <div class="range-slider" data-slider="<%= value %>" data-options="start: 1; end: 12;">
+                <span class="range-slider-label"><%= size.name %> screen size</span>
+                <span class="range-slider-handle"></span>
+                <span class="range-slider-active-segment"></span>
+                <input type="hidden">
+            </div>
+        </div>
     </div>
 </script>
 
 <script id="textEditTemplate" type="text/template">
     <!--h3>Edit Text</h3-->
-    <!--textarea name="" id="" cols="30" rows="10"><%= content.value %></textarea-->
     <iframe id="textEditIframe" src="<%=url%>?timestamp=<%= new Date().getTime() %>" frameborder="0"></iframe>
 </script>
