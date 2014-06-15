@@ -29,10 +29,13 @@ app.ColumnView = app.modulesView.extend({
 
     events: {
         "click .edit-content": "editColumn",
-        "click .editor-delete": "deleteColumn"
+        "click .editor-delete": "deleteColumn",
+        "click .editor-add-element": ""
     },
+    
+    subViews: [],
 
-    // template: _.template($('#columnTemplate').html()),
+    template: _.template($('#columnTemplate').html()),
 
     initialize: function (options) {
 
@@ -53,14 +56,18 @@ app.ColumnView = app.modulesView.extend({
     render: function () {
         
         // render template
-        // this.$el.html();
+        this.$el.empty();
+        this.$el.html(this.template());
         
         this.$el.removeClass();
         this.$el.addClass(this.getClassName());
         
+        var that = this;
+        
         // render column elements
         _.each(this.model.get('elements'), function(element){
             console.log(element)
+            that.renderElement(element);
         })
         
         // trigger render event
@@ -69,39 +76,14 @@ app.ColumnView = app.modulesView.extend({
         return this;
     },
 
-    renderElement: function () {
+    renderElement: function (element) {
+        var elementView = new app.ColumnElementView({
+            model: new app.ElementModel(element),
+            column: this
+        })
         
-        // check if type of the model is a string
-        if (typeof this.model.get('type') === "string") {
-            // get template settings by type
-            var type = _.findWhere(app.Settings.types, {
-                'name': this.model.get('type')
-            });
-            
-            // if type is undefined, then set type settings from empty
-            if (typeof type === "undefined") {
-                type = _.findWhere(app.Settings.types, {
-                    'name': 'empty'
-                });
-            }
-        }
+        this.$el.prepend(elementView.render().el);
         
-        // set template data
-        var templateData = this.model.toJSON();
-
-        templateData.type = type;
-        templateData.id = this.model.cid;
-        
-        // render template
-        this.$el.html(this.template(templateData));
-        
-        this.$el.removeClass();
-        this.$el.addClass(this.getClassName());
-        
-        // trigger render event
-        this.trigger("render");
-        
-        return this;
     },
 
     deleteColumn: function (e) {

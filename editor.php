@@ -51,9 +51,11 @@ $editor_settings_assoc = json_decode($json, true);
     
     <!-- Columns -->
     <script src="js/models/column.js"></script>
+    <script src="js/models/element.js"></script>
     <script src="js/collections/columns.js"></script>
     <script src="js/views/column.js"></script>
     <script src="js/views/column/column.draggable.js"></script>
+    <script src="js/views/column/column.elements.js"></script>
     
     <!-- Row -->
     <script src="js/models/row.js"></script>

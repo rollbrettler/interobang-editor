@@ -1,12 +1,11 @@
-// #ToDo
 // Seperate column content in elemnts
 // with this it is possible to add more than 1 content field in each column
 // mor complex layouts are possible
-// js/view/column.js
+// js/view/column/column.elements.js
 
 var app = app || {};
 
-// draggable column View module
+// column element v iew module
 // ----------
 // 
 
@@ -17,17 +16,21 @@ app.ColumnElementViewModules.functions = [];
 app.ColumnElementView = app.modulesView.extend({
 
     tagName: "div",
+    
+    className: "editor-inner-column text-center",
 
     events: {
         "click .edit-content": "editColumn",
         "click .editor-delete": "deleteColumn"
     },
 
-    // template: _.template($('#columnTemplate').html()),
+    template: _.template($('#columnElementTemplate').html()),
 
     initialize: function (options) {
 
         this.column = options.column;
+        
+        //console.log(this.model, options.column)
         
         this.setModulesObject(app.ColumnElementViewModules);
 
@@ -66,9 +69,6 @@ app.ColumnElementView = app.modulesView.extend({
         
         // render template
         this.$el.html(this.template(templateData));
-        
-        this.$el.removeClass();
-        this.$el.addClass(this.getClassName());
         
         // trigger render event
         this.trigger("render");

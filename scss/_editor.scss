@@ -28,10 +28,23 @@
             display: block;
         }
     }
+    
+    .columns {
+        &:hover > .editor-add-element {
+            display: block;
+        }
+    }
     .editor-inner-column {
         background-color: $wp-bg-grey;
+        float: none !important;
+        margin-top: 20px;
         padding: 15px 5px;
         position: relative;
+        
+        &:first-child {
+            margin-top: 0;
+        }
+        
         a {
             display: block;
         }
@@ -61,6 +74,20 @@
             }
         }
     }
+        
+    .editor-add-element {
+        display: none;
+        
+        a {
+            background-color: $sun-flower;
+            padding: 1px 4px;
+        }
+        
+        .fa {
+            color: #fff;
+        }
+    }
+    
     .editor-drag,
     .editor-controls,
     .editor-row-settings {

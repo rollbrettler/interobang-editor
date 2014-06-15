@@ -69,36 +69,35 @@
     </div>
 </script>
 
+<script id="columnTemplate" type="text/template">
+    <!-- add column element -->
+    <div class="editor-add-element text-center">
+        <a href="#add-element">
+            <i class="fa fa-plus"></i>
+        </a>
+    </div>
+</script>
 <script id="columnElementTemplate" type="text/template">
-    <div class="editor-inner-column text-center">
-        <!-- draggable area -->
-        <div class="editor-drag">
-            <a href="#drag-column"><i class="fa fa-bars"></i></a>
+    <!-- draggable area -->
+    <div class="editor-drag">
+        <a href="#drag-column"><i class="fa fa-bars"></i></a>
+    </div>
+
+    <!-- content icon -->
+    <a href="#edit/<%= id %>" class="edit-content"><i class="<%= type.icon_css %> editor-content-icon"></i></a>
+
+    <!-- control elements -->
+    <div class="editor-controls">
+        <!-- edit column settings -->
+        <div class="editor-edit">
+            <a class="edit-content" href="#edit/<%= id %>">
+                <i class="fa fa-pencil"></i>
+            </a>
         </div>
-        
-        <!-- content icon -->
-        <a href="#edit/<%= id %>" class="edit-content"><i class="<%= type.icon_css %> editor-content-icon"></i></a>
-        
-        <!-- control elements -->
-        <div class="editor-controls">
-            <!-- edit column settings -->
-            <div class="editor-edit">
-                <a class="edit-content" href="#edit/<%= id %>">
-                    <i class="fa fa-pencil"></i>
-                </a>
-            </div>
-            <!-- delete column -->
-            <div class="editor-delete">
-                <a href="#delete-column">
-                    <i class="fa fa-times"></i>
-                </a>
-            </div>
-        </div>
-        
-        <!-- add column -->
-        <div class="editor-add">
-            <a href="#add-column">
-                <i class="fa fa-plus"></i>
+        <!-- delete column -->
+        <div class="editor-delete">
+            <a href="#delete-column">
+                <i class="fa fa-times"></i>
             </a>
         </div>
     </div>
