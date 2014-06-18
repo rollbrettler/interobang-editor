@@ -48,27 +48,34 @@
         a {
             display: block;
         }
+        
         .editor-content-icon {
             color: #fff;
             font-size: 85px;
         }
+        
         &:hover > .editor-controls {
             display: block;
         }
+        
         &.editor-empty-column {
             background-color: #fff;
             border: 2px dashed $wp-bg-grey;
+            
             .editor-content-icon {
                 color: $wp-bg-grey;
             }
+            
             .editor-drag {
                 display: none;
             }
         }
+        
         .editor-drag {
             left: auto;
             right: 10px;
             top: 10px;
+            
             .fa {
                 color: #fff;
             }
@@ -77,6 +84,9 @@
         
     .editor-add-element {
         display: none;
+        position: absolute;
+        left: 0;
+        right: 0;
         
         a {
             background-color: $sun-flower;
@@ -92,6 +102,7 @@
     .editor-controls,
     .editor-row-settings {
         position: absolute;
+        
         .fa {
             color: $wp-bg-grey;
         }

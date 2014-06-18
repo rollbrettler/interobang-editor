@@ -30,7 +30,7 @@ app.ColumnView = app.modulesView.extend({
     events: {
         "click .edit-content": "editColumn",
         "click .editor-delete": "deleteColumn",
-        "click .editor-add-element": ""
+        "click .editor-add-element": "addElement"
     },
     
     subViews: [],
@@ -42,12 +42,28 @@ app.ColumnView = app.modulesView.extend({
         this.row = options.row;
         
         this.setModulesObject(app.ColumnViewModules);
+        
+        // check if it is a row with empty columns and add template columns
+        if (!this.model.get('elements')) {
 
-        //this.listenTo(this.model, 'change', this.render);
+            var elementsArray = new Array();
 
+            elementsArray.push(
+                new app.ElementModel().toJSON()
+            );
+
+            this.model.set("elements", elementsArray);
+            
+        }
+        
+        this.collection = new app.ColumnsCollection(
+            this.model.get("columns")
+        );
+        
+        this.listenTo(this.collection, "add", this.renderElement);
+        
         this.model.on('change', this.render, this);
         this.model.on('reset', this.render, this);
-        //this.model.on('remove', this.render, this);
         this.model.on('add', this.render, this);
 
         this.render();
@@ -66,7 +82,7 @@ app.ColumnView = app.modulesView.extend({
         
         // render column elements
         _.each(this.model.get('elements'), function(element){
-            console.log(element)
+            //console.log(element)
             that.renderElement(element);
         })
         
@@ -132,6 +148,17 @@ app.ColumnView = app.modulesView.extend({
         
         // debug
         // console.log(this.model.attributes);
+    },
+    
+    addElement: function(event) {
+        
+        event.preventDefault();
+        
+        this.collection.add({});
+        
+        this.model.set('elements', this.collection.toJSON());
+        
+        this.render();
     }
 
 });

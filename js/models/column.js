@@ -13,12 +13,7 @@ app.ColumnModel = Backbone.Model.extend({
         medium: '4',
         large: '4',
         xlarge: '4',
-        elements: [
-            {
-                type: 'text',
-                value: ''
-            }
-        ]
+        elements: false
     },
 
     initialize: function () {

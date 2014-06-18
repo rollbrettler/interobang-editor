@@ -49,13 +49,16 @@ $editor_settings_assoc = json_decode($json, true);
     <script src="js/helpers/modules.js"></script>
     <script src="js/helpers/tinymce.ready.js"></script>
     
+    <!-- Element -->
+    <script src="js/models/element.js"></script>
+    <script src="js/collections/elements.js"></script>
+    <script src="js/views/element.js"></script>
+    
     <!-- Columns -->
     <script src="js/models/column.js"></script>
-    <script src="js/models/element.js"></script>
     <script src="js/collections/columns.js"></script>
     <script src="js/views/column.js"></script>
     <script src="js/views/column/column.draggable.js"></script>
-    <script src="js/views/column/column.elements.js"></script>
     
     <!-- Row -->
     <script src="js/models/row.js"></script>
