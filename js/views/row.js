@@ -58,7 +58,9 @@ app.RowView = app.modulesView.extend({
         
         var templateData = this.model.toJSON();
         
-        //templateData.id = this.model.cid;
+        // templateData.id = this.model.cid;
+        
+        // debug
         // console.log(templateData);
         this.$el.html(this.template(templateData));
         

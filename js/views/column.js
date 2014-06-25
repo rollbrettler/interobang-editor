@@ -29,7 +29,7 @@ app.ColumnView = app.modulesView.extend({
 
     events: {
         "click .edit-content": "editColumn",
-        "click .editor-delete": "deleteColumn",
+        //"click .editor-delete": "deleteColumn",
         "click .editor-add-element": "addElement"
     },
     
@@ -38,12 +38,13 @@ app.ColumnView = app.modulesView.extend({
     template: _.template($('#columnTemplate').html()),
 
     initialize: function (options) {
-
+        
+        // set parrent row reference
         this.row = options.row;
         
         this.setModulesObject(app.ColumnViewModules);
         
-        // check if it is a row with empty columns and add template columns
+        // check if it is a column with empty elements and add template elements
         if (!this.model.get('elements')) {
 
             var elementsArray = new Array();
@@ -56,16 +57,23 @@ app.ColumnView = app.modulesView.extend({
             
         }
         
-        this.collection = new app.ColumnsCollection(
-            this.model.get("columns")
+        // Set elements as collection of this column
+        this.collection = new app.ElementsCollection(
+            this.model.get("elements")
         );
         
+        // listen on adding new elements to render them
         this.listenTo(this.collection, "add", this.renderElement);
+        // listen on removing elements
+        this.listenTo(this.collection, "change", this.changeElement);
+        this.listenTo(this.collection, "remove", this.removeElement);
         
+        // listen on model actions
         this.model.on('change', this.render, this);
         this.model.on('reset', this.render, this);
         this.model.on('add', this.render, this);
-
+        
+        // render the column
         this.render();
     },
     
@@ -75,6 +83,7 @@ app.ColumnView = app.modulesView.extend({
         this.$el.empty();
         this.$el.html(this.template());
         
+        // remove all css classes to generate them new
         this.$el.removeClass();
         this.$el.addClass(this.getClassName());
         
@@ -93,12 +102,33 @@ app.ColumnView = app.modulesView.extend({
     },
 
     renderElement: function (element) {
+        
+        // render single element view
         var elementView = new app.ColumnElementView({
             model: new app.ElementModel(element),
             column: this
-        })
+        });
         
+        // debug
+        // console.log("renderElement");
+        
+        // append the rendered element
         this.$el.prepend(elementView.render().el);
+        
+        // debug
+        // console.log(this.$el);
+        
+    },
+    
+    removeElement: function(model) {
+        
+        // debug
+        console.log("removeElement",model);
+        this.collection.remove(model);
+        
+        this.model.set('element', this.collection.toJSON());
+        
+        this.render();
         
     },
 
@@ -134,6 +164,7 @@ app.ColumnView = app.modulesView.extend({
         // listen on save
         this.on("save-content", this.saveColumnSettings, this);
         
+        // reinit foundation
         jQuery(document).foundation();
         
     },
@@ -154,11 +185,16 @@ app.ColumnView = app.modulesView.extend({
         
         event.preventDefault();
         
+        // add empty element to collection
         this.collection.add({});
         
+        // set back ellements json to the column model
         this.model.set('elements', this.collection.toJSON());
         
-        this.render();
+    },
+    
+    changeElement: function(e) {
+        this.model.set('columns', this.collection.toJSON());
     }
 
 });

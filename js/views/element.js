@@ -20,8 +20,8 @@ app.ColumnElementView = app.modulesView.extend({
     className: "editor-inner-column text-center",
 
     events: {
-        "click .edit-content": "editColumn",
-        "click .editor-delete": "deleteColumn"
+        "click .edit-content": "editElement",
+        "click .editor-delete": "deleteElement"
     },
 
     template: _.template($('#columnElementTemplate').html()),
@@ -35,7 +35,7 @@ app.ColumnElementView = app.modulesView.extend({
         this.setModulesObject(app.ColumnElementViewModules);
 
         //this.listenTo(this.model, 'change', this.render);
-
+        
         this.model.on('change', this.render, this);
         this.model.on('reset', this.render, this);
         //this.model.on('remove', this.render, this);
@@ -63,7 +63,8 @@ app.ColumnElementView = app.modulesView.extend({
         
         // set template data
         var templateData = this.model.toJSON();
-
+        
+        // set some more template data
         templateData.type = type;
         templateData.id = this.model.cid;
         
@@ -76,17 +77,19 @@ app.ColumnElementView = app.modulesView.extend({
         return this;
     },
 
-    deleteColumn: function (e) {
+    deleteElement: function (e) {
 
         e.preventDefault();
 
+        console.log("delete element");
+        
         // destroy the model and remove the view
         this.model.destroy();
         this.remove();
         
     },
 
-    editColumn: function (e) {
+    editElement: function (e) {
 
         e.preventDefault();
         
@@ -112,7 +115,7 @@ app.ColumnElementView = app.modulesView.extend({
         
     },
 
-    saveColumnSettings: function () {
+    saveElementSettings: function () {
         
         // get the settings from edit view model and save it
         //this.model.set(this.editView.model.toJSON());
