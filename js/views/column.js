@@ -90,7 +90,7 @@ app.ColumnView = app.modulesView.extend({
         var that = this;
         
         // render column elements
-        _.each(this.model.get('elements'), function(element){
+        _.each(this.collection.models, function(element){
             //console.log(element)
             that.renderElement(element);
         })
@@ -105,28 +105,32 @@ app.ColumnView = app.modulesView.extend({
         
         // render single element view
         var elementView = new app.ColumnElementView({
-            model: new app.ElementModel(element),
+            model: element,
             column: this
         });
+        
+        // append that view to the view array
+        var elementCount = this.subViews.push(elementView);
+        
+        // render the element
+        var $element = this.subViews[elementCount - 1].render().el;
         
         // debug
         // console.log("renderElement");
         
         // append the rendered element
-        this.$el.prepend(elementView.render().el);
-        
-        // debug
-        // console.log(this.$el);
+        this.$el.prepend($element);
         
     },
     
     removeElement: function(model) {
         
         // debug
-        console.log("removeElement",model);
+        console.log("removeElement: ", model);
+        
         this.collection.remove(model);
         
-        this.model.set('element', this.collection.toJSON());
+        this.model.set('elements', this.collection.toJSON());
         
         this.render();
         
