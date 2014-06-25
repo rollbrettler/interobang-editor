@@ -21,7 +21,7 @@
     .editor-row {
         border: 2px dashed $wp-bg-grey;
         margin-bottom: 20px;
-        min-height: 153px;
+        min-height: 48px;
         padding: 15px 15px;
         position: relative;
         &:hover > .editor-controls {
@@ -32,6 +32,11 @@
     .columns {
         &:hover > .editor-add-element {
             display: block;
+        }
+        
+        &:hover .editor-content-icon {
+            font-size: 85px;
+            transition: font-size 0.5s;
         }
     }
     .editor-inner-column {
@@ -51,7 +56,7 @@
         
         .editor-content-icon {
             color: #fff;
-            font-size: 85px;
+            font-size: 15px;
         }
         
         &:hover > .editor-controls {
@@ -74,7 +79,7 @@
         .editor-drag {
             left: auto;
             right: 10px;
-            top: 10px;
+            top: 15px;
             
             .fa {
                 color: #fff;
