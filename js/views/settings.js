@@ -16,10 +16,11 @@ app.SettingsView = app.modulesView.extend({
     initialize: function (options) {
 
         //this. = options.;
-
-        this.types = [];
-        
+        this.column = options.column;
         this.parent = options.parent;
+        
+        // reset types array
+        this.types = [];
         
         // add modules
         this.setModulesObject(app.SettingsViewModules);
@@ -33,10 +34,11 @@ app.SettingsView = app.modulesView.extend({
     settingsContentView: {},
     
     events: {
-        'click .save-settings': 'saveSettings'
+        'click .save-settings': 'saveSettings',
+        'click .tabs dd': 'reinitFoundation'
     },
 
-    renderColumnSettings: function () {
+    renderColumnElementSettings: function () {
 
         //console.log(this.model);
 
@@ -74,10 +76,12 @@ app.SettingsView = app.modulesView.extend({
         // render size chooser
         _.each(app.Settings.css_selector.sizes, function (size) {
             if (size.css) {
-
+                
+                console.log();
+                
                 var sizeView = new app.SizeView({
                     size: size,
-                    model: that.model,
+                    model: that.column,
                     parent: that
                 });
                 
@@ -123,7 +127,15 @@ app.SettingsView = app.modulesView.extend({
     
     setSize: function(slug, size) {
         
-        this.model.set(slug, size);
+        this.column.set(slug, size);
         
+    },
+    
+    reinitFoundation: function () {
+        // dirty fix
+        // #ToDo
+        setTimeout(function() {
+            jQuery(document).foundation('reflow');
+        }, 200);
     }
 });

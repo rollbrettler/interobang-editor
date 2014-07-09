@@ -91,6 +91,7 @@ app.ColumnElementView = app.modulesView.extend({
 
     editElement: function (e) {
 
+
         e.preventDefault();
         
         // trigger event to hide content div
@@ -99,26 +100,29 @@ app.ColumnElementView = app.modulesView.extend({
         // create settings view
         this.editView = new app.SettingsView({
             model: this.model,
+            column: this.column,
             parent: this
         });
         
         // render it and append it to settings div
-        jQuery('.editor-settings').html(this.editView.renderColumnSettings().el);
+        jQuery('.editor-settings').html(this.editView.renderColumnElementSettings().el);
         
         // trigger edit view to render settings
         this.editView.trigger('changeType:' + this.model.get('type'));
         
         // listen on save
-        this.on("save-content", this.saveColumnSettings, this);
+        this.on("save-content", this.saveElementSettings, this);
         
-        jQuery(document).foundation();
+        // reinit foundation
+        // jQuery(document).foundation();
         
     },
 
     saveElementSettings: function () {
         
         // get the settings from edit view model and save it
-        //this.model.set(this.editView.model.toJSON());
+        console.log(this.editView.model.toJSON());
+        this.model.set(this.editView.model.toJSON());
         
         // remove the edit view
         this.editView.remove();

@@ -28,7 +28,7 @@ app.ColumnView = app.modulesView.extend({
     },
 
     events: {
-        "click .edit-content": "editColumn",
+        //"click .edit-content": "editColumn",
         //"click .editor-delete": "deleteColumn",
         "click .editor-add-element": "addElement"
     },
@@ -106,7 +106,7 @@ app.ColumnView = app.modulesView.extend({
         // render single element view
         var elementView = new app.ColumnElementView({
             model: element,
-            column: this
+            column: this.model
         });
         
         // append that view to the view array
@@ -121,6 +121,7 @@ app.ColumnView = app.modulesView.extend({
         // append the rendered element
         this.$el.prepend($element);
         
+        //jQuery(document).foundation('reflow');
     },
     
     removeElement: function(model) {
@@ -143,33 +144,6 @@ app.ColumnView = app.modulesView.extend({
         // destroy the model and remove the view
         this.model.destroy();
         this.remove();
-        
-    },
-
-    editColumn: function (e) {
-
-        e.preventDefault();
-        
-        // trigger event to hide content div
-        app.EditorContentView.trigger("edit-content");
-        
-        // create settings view
-        this.editView = new app.SettingsView({
-            model: this.model,
-            parent: this
-        });
-        
-        // render it and append it to settings div
-        jQuery('.editor-settings').html(this.editView.renderColumnSettings().el);
-        
-        // trigger edit view to render settings
-        this.editView.trigger('changeType:' + this.model.get('type'));
-        
-        // listen on save
-        this.on("save-content", this.saveColumnSettings, this);
-        
-        // reinit foundation
-        jQuery(document).foundation();
         
     },
 

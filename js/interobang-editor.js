@@ -11,10 +11,16 @@ app.Editor = new app.EditorRouter();
 Backbone.history.start();
 */
 
+jQuery(document).foundation();
+
+// listen on DOM changes to reinit foundation maybe ne to be a nother solution
+// #Todo
+$(document).bind('DOMSubtreeModified', function () {
+    jQuery(document).foundation('reflow');
+});
+
 app.EditorContentView = new app.EditorView();
 app.EditorContentView.render();
-
-//jQuery(document).foundation();
 
 //app.Editor.collection.add({});
 //app.Editor.render();/**/
