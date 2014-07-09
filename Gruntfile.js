@@ -39,15 +39,52 @@ module.exports = function (grunt) {
         uglify: {
             build: {
                 files: {
-                    'js/app.min.js': [
-                        'bower_components/modernizr/modernizr.js',
-                        'bower_components/holderjs/holder.js',
-                        //'bower_components/jquery/jquery.min.js',
-                        //'bower_components/foundation/js/foundation.js',
-                        //'bower_components/jQuery-Animate-Enhanced/scripts/src/jquery.animate-enhanced.js',
-                        'bower_components/superslides/dist/jquery.superslides.js',
-                        'js/base64.js',
-                        'js/app.js'
+                    'js/interobang-editor.min.js': [
+                        // dependencies -->
+                        'bower_components/jquery/dist/jquery.js',
+                        'bower_components/jquery-ui/ui/jquery-ui.js',
+                        'bower_components/underscore/underscore.js',
+                        'bower_components/backbone/backbone.js',
+                        'bower_components/foundation/js/vendor/modernizr.js',
+                        'bower_components/foundation/js/foundation.js',
+
+                        // Data -->
+                        'js/helpers/base64.js',
+
+                        // Helper -->
+                        'js/helpers/guid.js',
+                        'js/helpers/modules.js',
+                        'js/helpers/tinymce.ready.js',
+
+                        // Columns -->
+                        'js/models/column.js',
+                        'js/collections/columns.js',
+                        'js/views/column.js',
+                        'js/views/column/column.draggable.js',
+
+                        // Row -->
+                        'js/models/row.js',
+                        'js/collections/rows.js',
+                        'js/views/row.js',
+                        'js/views/row/row.draggable.js',
+
+                        // Settings -->
+                        'js/views/settings.js',
+                        'js/views/settings/settings.type.chooser.js',
+                        'js/views/settings/settings.column.size.js',
+                        // Setting types -->
+                        'js/views/settings/settings.text.js',
+                        'js/views/settings/settings.video.js',
+
+                        // router -->
+                        'js/routes/editor.js',
+
+                        // main script -->
+                        'js/views/editor.js',
+                        'js/views/editor/editor.get.data.js',
+                        'js/views/editor/editor.save.js',
+                        'js/views/editor/editor.draggable.js',
+                        'js/interobang-editor.js'
                     ]
                 }
             }
@@ -66,6 +103,5 @@ module.exports = function (grunt) {
     });
 
     grunt.registerTask('build', ['sass', 'copy:fonts']);
-    grunt.registerTask('editor', ['copy:editor']);
     grunt.registerTask('default', ['build']);
 }
