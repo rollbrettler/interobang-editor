@@ -117,9 +117,10 @@ app.ColumnView = app.modulesView.extend({
         
         // debug
         // console.log("renderElement");
+        console.log(this.$(".editor-add-element"));
         
         // append the rendered element
-        this.$el.prepend($element);
+        this.$(".editor-add-element").prepend($element);
         
         //jQuery(document).foundation('reflow');
     },
