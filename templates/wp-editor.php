@@ -16,7 +16,7 @@ function initTriggerTinymce($in) {
       jQuery(document).ready(function(){
           window.parent.app.tinymceReady()
       })
-      
+
     });
   }";
  return $in;
@@ -32,11 +32,11 @@ add_filter('tiny_mce_before_init', 'initTriggerTinymce' );
     <?php wp_head();?>
 </head>
 <body style="padding: 15px;">
-<?php    
+<?php
     wp_editor(
         "",
         "interobang_editor",
-        array( 
+        array(
             'media_buttons' => true,
             "textarea_name"=>"dummy",
             "editor_class" => "",
